@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: url(https://i.redd.it/iibrptucse951.png) no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 code {

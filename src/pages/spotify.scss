@@ -1,0 +1,217 @@
+
+/* @import './styles/global-vars.scss'; */
+
+$spotify-black: #191414;
+$spotify-white: #FFFFFF;
+$spotify-green: #1DB954;
+$spotify-dark-gray: rgb(18,18,18);
+$spotify-light-gray: rgb(179,179,179);
+$spotify-media-controller-gray: rgb(21,21,21);
+
+$apple-light-green: rgb(52, 199, 89);
+$apple-dark-green: rgb(48, 209, 88);
+$apple-light-red: rgb(255, 59, 49);
+$apple-dark-red: rgb(255, 69, 58);
+$apple-light-yellow: rgb(255, 204, 0);
+$apple-dark-yellow: rgb(255, 214, 10);
+
+.spotify-container {
+    position: absolute;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    grid-template-columns: 280px auto 280px; 
+    grid-template-areas: "left-sidebar main right-sidebar";
+    overflow: hidden;
+}
+
+
+.spotify-main {
+    grid-area: "main";
+    background: $spotify-dark-gray;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.left-sidebar {
+    grid-area: "left-sidebar";
+    background: black;
+    display: grid;
+    grid-template-rows: 50px 240px calc(100vh - 50px - 240px);
+    grid-template-areas: "header" "navbar" "playlists";
+    padding: 0px 25px;
+    height: 100%;
+    width: 100%;
+    color: $spotify-light-gray;
+
+    .header {
+        grid-area: "header";
+        height: 100%;
+        width: 100%;
+    }
+
+    .navbar {
+        grid-area: "navbar";
+        height: 100%;
+        width: calc(100% - 50px);
+        border-bottom: 2px solid $spotify-media-controller-gray;
+
+        .nav-card {
+            height: 40px;
+            width: 100%;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .icon {
+                height: 100%;
+                width: 60px;
+                background: white;
+            }
+
+        }
+
+        .nav-card:hover {
+            color: white;
+        }
+
+        
+    }
+
+    .playlists {
+        grid-area: "playlists";
+        height: 100%;
+        width: calc(100% - 25px);
+        overflow-y: auto;
+
+        .playlist {
+            font-size: smaller;
+            margin: 1em 0;
+        }
+
+        .playlist:hover {
+            color: white;
+        }
+    }
+}
+
+.right-sidebar {
+    grid-area: "right-sidebar";
+    background: black;
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    background: inherit;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 70px;
+}
+
+.button {
+    height: 12px;
+    width: 12px;
+    border-radius: 25px;
+}
+  
+.close { background: $apple-dark-red }
+.minimize { background: $apple-dark-yellow}
+.expand { background: $apple-dark-green }
+  
+
+
+
+
+
+
+
+
+
+.sidebar-content {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: center;
+}
+
+.image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    background: white;
+    margin-right: 5px;
+}
+
+
+
+
+
+.conversation {
+    height: 65px;
+    width: 92%;
+    border-radius: 6px;
+    color: rgb(209, 209, 214);
+    display: flex;
+    flex-direction: row;
+}
+
+.image-container {
+    height: 100%;
+    width: 22%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+  
+
+
+
+.conversation-content {
+    height: 100%;
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    text-overflow: ellipsis;
+    border-bottom: thin solid rgb(196, 196, 196);
+
+    .content-top {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-top: 2px;
+        justify-content: space-between;
+
+        p {
+            margin-top: 5px;
+            margin-right: 10px;
+            color: rgb(199, 199, 204);
+        }
+    }
+
+    h5 {
+        margin: 0px;
+        margin-top: 5px;
+        padding: 0px;
+        color: white;
+    }
+
+    p {
+        margin: 0px;
+        padding: 0px;
+        font-size: 6px;
+        font-weight: 500;
+    }
+}
