@@ -1,10 +1,15 @@
 import React from 'react';
-import headshot from '../images/Headshot.jpg';
+import headshot from '../../../../images/Headshot.jpg';
 
 export default function Conversation(props: any) {
+
+    function handleClick(event: any) {
+        props.onChildClick(props.conversationId); // pass any argument to the callback
+    }
+
     return(
         props.type === "pinned" ?
-            <div className="pinned" style={props.clicked ? {background: "rgb(54, 134, 237)"} : {background: "none"}}>
+            <div className={`pinned ${props.clicked ? "clicked": ""}`} onClick={handleClick}>
                 <div className="pinned-photo">
                     <img className="image-pinned" src={headshot}/>
                 </div>
@@ -13,7 +18,7 @@ export default function Conversation(props: any) {
                 </div>
             </div>
         :
-            <div className="conversation" style={props.clicked ? {background: "rgb(10, 132, 255)"} : {background: "none"}}>
+            <div className={`conversation ${props.clicked ? "clicked": ""}`} onClick={handleClick}>
                 <div className="image-container">
                     <img className="image" src={headshot}/>
                 </div>

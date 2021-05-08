@@ -1,10 +1,10 @@
-import Sidebar from '../components/Sidebar';
-import Main from '../components/Main';
+import Sidebar from './components/Sidebar/Sidebar';
+import Transcript from './components/Transcript/Transcript';
 import React from 'react';
 
 
 export default function Messenger(props: any) {
-    const [ selected, setSelected ] = React.useState(null);
+    const [ selected, setSelected ] = React.useState(100);
 
     function handleChildClick(childData: any) {
         setSelected(childData);
@@ -15,7 +15,7 @@ export default function Messenger(props: any) {
     return(
         <div className="container">
             <Sidebar onChildClick={handleChildClick} selectedIndex={selected}/>
-            <Main/>
+            <Transcript/>
         </div>
     )
 }

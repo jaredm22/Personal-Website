@@ -1,6 +1,5 @@
-// import './main.css';
 import React from 'react';
-import Message from './Message';
+import Message from '../Message/Message';
 
 const text = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "This is a sample text", "Here is another sample text that is a little bit longer than the other sample text", "sample!"]
 const type = ["received", "sent"]
@@ -12,7 +11,7 @@ interface IState {
     input: string
 }
 
-export default class Main extends React.Component<IProp, IState>{
+export default class Transcript extends React.Component<IProp, IState>{
     constructor(props: any) {
         super(props);
 

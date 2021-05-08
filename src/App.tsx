@@ -1,5 +1,5 @@
-import React from 'react';
-import Home from './pages/Home';
+// import React from 'react';
+import Messenger from './pages/iMessage/Messenger';
 import Spotify from './pages/spotify/Spotify';
 import './App.scss';
 

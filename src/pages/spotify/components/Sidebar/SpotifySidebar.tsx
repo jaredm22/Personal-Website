@@ -1,5 +1,6 @@
 import React from 'react';
 import headshot from '../../../../images/Headshot.jpg';
+import WindowButtons from '../../../../components/WindowButtons.tsx/WindowButtons';
 
 function NavCard(props: any) {
 
@@ -57,11 +58,7 @@ export default function Sidebar(props: any) {
         props.side === "left" ?
         <div className="left-sidebar">
                 <div className="header">
-                    <div className="button-container">
-                        <div className="button close"></div>
-                        <div className="button minimize"></div>
-                        <div className="button expand"></div>
-                    </div>
+                    <WindowButtons/>
                 </div>
                
 

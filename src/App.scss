@@ -1,6 +1,17 @@
 
 /* @import './styles/global-vars.scss'; */
 
+$apple-light-green: rgb(52, 199, 89);
+$apple-dark-green: rgb(48, 209, 88);
+$apple-light-red: rgb(255, 59, 49);
+$apple-dark-red: rgb(255, 69, 58);
+$apple-sunset-orange: rgb(255, 96, 92);
+$apple-pastel-orange: rgb(255, 189, 68);
+$apple-malachite: rgb(0, 202, 78);
+$apple-light-yellow: rgb(255, 204, 0);
+$apple-dark-yellow: rgb(255, 214, 10);
+$apple-border-gray: rgb(108, 105, 108);
+
 .container {
   position: absolute;
   display: grid;
@@ -31,7 +42,6 @@
 }
 
 .main-content {
-  position: relative;
   height: calc(100% - 110px);
   width: 100%;
   padding: 55px 0;
@@ -66,7 +76,7 @@
 .delivered {
   color: rgb(173, 173, 173);
   align-self: flex-end;
-  font-size: 8px;
+  font-size: 12px;
   margin: 0px;
   margin-right: 1.5em;
   margin-bottom: 1em;
@@ -75,7 +85,6 @@
 .main-footer {
   position: fixed;
   z-index: 2;
-  bottom: 0%;
   height: 55px;
   width: calc(100% - 320px);
   display: flex;
@@ -83,8 +92,8 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgba(30, 30, 30, 0.9);
-  backdrop-filter: blur(20px) brightness(140%);
-  -webkit-backdrop-filter: blur(20px) brightness(140%);
+  backdrop-filter: blur(60px) brightness(140%);
+  -webkit-backdrop-filter: blur(60px) brightness(140%);
 }
 
 .message-input {
@@ -109,13 +118,35 @@
   align-items: center;
 
   h6 {
-    font-size: 5px;
+    font-size: 10px;
     margin: none;
   }
 
   p {
     margin: none;
     margin-left: 5px;
-    font-size: 3px;
+    font-size: 10px;
   }
 }
+
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  background: inherit;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1rem;
+  height: 60%;
+  width: 55px;
+}
+
+.button {
+  height: 12px;
+  width: 12px;
+  border-radius: 25px;
+}
+
+.close { background: $apple-sunset-orange }
+.minimize { background: $apple-pastel-orange}
+.expand { background: $apple-malachite }
