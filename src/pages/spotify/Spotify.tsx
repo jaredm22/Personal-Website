@@ -1,7 +1,8 @@
 import React from 'react';
 import './spotify.scss';
-import Sidebar from './components/SpotifySidebar';
+import Sidebar from './components/Sidebar/SpotifySidebar';
 import Main from './components/SpotifyMain';
+import MediaController from './components/MediaController';
 
 export default function Spotify(props: any) {
     const [ selected, setSelected ] = React.useState(null);
@@ -17,6 +18,7 @@ export default function Spotify(props: any) {
             <Sidebar side="left" onChildClick={handleChildClick}/>
             <Main/>
             <Sidebar side="right"/>
+            <MediaController/>
         </div>
     )
 }
