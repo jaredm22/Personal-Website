@@ -4,15 +4,18 @@
 $spotify-black: #191414;
 $spotify-white: #FFFFFF;
 $spotify-green: #1DB954;
-$spotify-dark-gray: rgb(18,18,18);
-$spotify-highlight-gray: rgb(36,36,36);
-$spotify-light-gray: rgb(179,179,179);
-$spotify-media-controller-gray: rgb(21,21,21);
+$spotify-dark-gray: rgb(18, 18, 18);
+$spotify-highlight-gray: rgb(36, 36, 36);
+$spotify-light-gray: rgb(179, 179, 179);
+$spotify-media-controller-gray: rgb(21, 21, 21);
 
 $apple-light-green: rgb(52, 199, 89);
 $apple-dark-green: rgb(48, 209, 88);
 $apple-light-red: rgb(255, 59, 49);
 $apple-dark-red: rgb(255, 69, 58);
+$apple-sunset-orange: rgb(255, 96, 92);
+$apple-pastel-orange: rgb(255, 189, 68);
+$apple-malachite: rgb(0, 202, 78);
 $apple-light-yellow: rgb(255, 204, 0);
 $apple-dark-yellow: rgb(255, 214, 10);
 $apple-border-gray: rgb(108, 105, 108);
@@ -55,11 +58,9 @@ p { margin: 0; padding: 0; }
     display: grid;
     grid-template-rows: 50px 240px calc(100vh - 50px - 240px);
     grid-template-areas: "header" "navbar" "playlists";
-    padding: 0px 25px;
     height: 100%;
-    width: 100%;
+    align-items: center;
     color: $spotify-light-gray;
-    border: inherit;
 
     .header {
         grid-area: "header";
@@ -71,6 +72,10 @@ p { margin: 0; padding: 0; }
         grid-area: "navbar";
         height: 100%;
         width: calc(100% - 50px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 25px;
         border-bottom: 2px solid $spotify-media-controller-gray;
 
         .nav-icon {
@@ -108,6 +113,7 @@ p { margin: 0; padding: 0; }
         height: 100%;
         width: calc(100% - 25px);
         overflow-y: auto;
+        margin-left: 25px;
 
         .playlist {
             font-size: smaller;
@@ -187,10 +193,11 @@ p { margin: 0; padding: 0; }
     display: flex;
     flex-direction: row;
     background: inherit;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    height: 100%;
-    width: 70px;
+    margin-left: 1rem;
+    height: 60%;
+    width: 55px;
 }
 
 .button {
@@ -199,6 +206,6 @@ p { margin: 0; padding: 0; }
     border-radius: 25px;
 }
   
-.close { background: $apple-dark-red }
-.minimize { background: $apple-dark-yellow}
-.expand { background: $apple-dark-green }
+.close { background: $apple-sunset-orange }
+.minimize { background: $apple-pastel-orange}
+.expand { background: $apple-malachite }
