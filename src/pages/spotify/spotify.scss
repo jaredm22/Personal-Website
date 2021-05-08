@@ -30,16 +30,15 @@ $apple-border-gray: rgb(108, 105, 108);
     grid-template-areas: "left-sidebar main right-sidebar";
     overflow: hidden;
     border: 1px solid ;
-
-    
 }
+    
 
 :is(h1, h2, h3, h4, h5, h6) {
     margin: 0;
     padding: 0;
 }
 
-h6 { font-weight: 400; font-size: 10px; padding: 2px;}
+h6 { font-weight: 500; font-size: 10.5px; padding: 2px;}
 h6:hover { color: white; text-decoration: underline;}
 
 p { margin: 0; padding: 0; }
@@ -50,6 +49,9 @@ p { margin: 0; padding: 0; }
     height: 100%;
     width: 100%;
     overflow: hidden;
+    display: grid;
+    grid-template-areas: "nav" "content";
+    grid-template-rows: 40px auto;
 }
 
 .left-sidebar {
