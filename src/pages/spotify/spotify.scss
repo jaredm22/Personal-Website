@@ -5,7 +5,7 @@ $spotify-black: #191414;
 $spotify-white: #FFFFFF;
 $spotify-green: #1DB954;
 $spotify-dark-gray: rgb(18, 18, 18);
-$spotify-highlight-gray: rgb(36, 36, 36);
+$spotify-highlight-gray: rgb(40, 40, 40);
 $spotify-light-gray: rgb(179, 179, 179);
 $spotify-media-controller-gray: rgb(24, 24, 24);
 
@@ -51,159 +51,115 @@ p { margin: 0; padding: 0; }
     background: $spotify-media-controller-gray;
 }
 
-
 .spotify-main {
     grid-area: main;
     background: $spotify-dark-gray;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    color: white;
 
-    .main-nav {
-        height: 60px;
+    .content-view-playlist {
+        padding-top: 60px;
+        height: 100%;
+        box-sizing: border-box;
         width: 100%;
-    }
-
-    .main-content {
-        height: 100%;
-        width: 100%;
-    }
-}
-
-.left-sidebar {
-    grid-area: left-sidebar;
-    background: black;
-    display: grid;
-    grid-template-rows: 50px 240px calc(100% - 50px - 240px);
-    grid-template-areas: "header" "navbar" "playlists";
-    height: 100%;
-    align-items: center;
-    color: $spotify-light-gray;
-
-    .header {
-        grid-area: header;
-        height: 100%;
-        width: 100%;
-    }
-
-    .navbar {
-        grid-area:navbar;
-        height: 100%;
-        width: calc(100% - 30px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-left: 10px;
-        margin-right: 20px;
-        border-bottom: 2px solid $spotify-media-controller-gray;
-
-        .nav-icon {
-            height: 100%;
-            width: 60px;
-        }
-
-        .nav-card {
-            height: 40px;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .nav-card:hover {
-            color: white;
-        }
-
-        .nav-card-clicked {
-            background: $spotify-highlight-gray;
-            height: 40px;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            border-radius: 5px;
-            color: white;
-        }
-        
-    }
-
-    .playlists {
-        grid-area:playlists;
-        height: 100%;
-        width: calc(100% - 25px);
-        overflow-y: auto;
-        margin-left: 25px;
-
-        .playlist {
-            font-size: smaller;
-            margin: 1em 0;
-        }
-
-        .playlist:hover {
-            color: white;
-        }
-    }
-}
-
-.right-sidebar {
-    grid-area:right-sidebar;
-    background: black;
-    display: grid;
-    grid-template-rows: 60px calc(100% - 60px);
-    grid-template-areas: "header" "list";
-    padding-left: 1.3rem;
-    height: 100%;
-    width: calc(100% - 1.3rem);
-    border: inherit;
-
-    .header {
-        grid-area: header;
-        height: 100%;
-        width: 100%;
-        color: white;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .friends-list {
-        color: $spotify-light-gray;
-        grid-area:list;
-        height: 100%;
-        width: 100%;
-        overflow-y: auto;
-    }
-
-    .friend-card {
         display: grid;
-        grid-template-columns: 50px calc(100% - 50px - 1.2rem);
-        grid-template-areas: "photo content";
-        margin: 1.5rem 0;
+        grid-template-rows: 275px auto;
+        grid-template-areas: 
+            "header"
+            "body";
+        overflow: auto;
 
-        .friend-card-photo {
-            grid-area: photo;
+        .content-header {
             height: 100%;
             width: 100%;
 
-            .image {
-                height: 40px;
-                width: 40px;
-                border-radius: 25px;
-            }            
+            .content-header-art {
+                height: 225px;
+            }
+
+            .content-header-info {
+
+            }
         }
-        
-        .friend-card-content {
+
+        .main-nav {
+            position: absolute;
+            width: calc(100vw - 520px);
+            top: 0%;
+            z-index: 2;
+            height: 60px;
+            background: lightblue;
+        }
+
+        .content-body {
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
 
-            .content-top {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+            .body-control-header {
+                background: green;
+                width: 100%;
+                height: 100px;
+            }
+
+            .content-body-list {
                 height: 100%;
                 width: 100%;
+                box-sizing: border-box;
+                padding: 0 30px;
+                color: $spotify-light-gray;
+
+                h5 { font-weight: 650; font-size: 14px; color: white;}
+                h6 { font-weight: 500; font-size: 14px; color: $spotify-light-gray;}
+
+                .list-header { border-bottom: 1px solid $spotify-highlight-gray; border-radius: none;}
+
+                .list-item, .list-header {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 50px 250px 250px 250px 60px;
+                    grid-template-areas: "item-number title album-name added-by time";
+                    text-align: left;
+                    box-sizing: border-box;
+                    padding: 0.2rem 0.5rem;
+                    border-radius: 5px;
+                    align-items: center;
+
+                    .item-number {
+                        grid-area: item-number;
+                        margin: 1em;
+                    }
+
+                    .title {
+                        grid-area: title;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        text-align: left;
+
+                        .title-info {
+                            margin: auto 0 auto 1em;
+                        }
+                    }
+
+                    .album-name {
+                        grid-area: album-name;
+                        margin: 0 1rem;
+                    }
+
+                    .album-art { height: 40px }
+                }
+
+                .list-item:hover {
+                    background: $spotify-highlight-gray;
+                }
             }
         }
     }
+
+    
 }

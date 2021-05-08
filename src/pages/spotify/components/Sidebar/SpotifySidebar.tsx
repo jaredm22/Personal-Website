@@ -1,6 +1,7 @@
 import React from 'react';
 import headshot from '../../../../images/Headshot.jpg';
 import WindowButtons from '../../../../components/WindowButtons.tsx/WindowButtons';
+import './sidebar.scss';
 
 function NavCard(props: any) {
 
