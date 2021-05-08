@@ -5,6 +5,7 @@ $spotify-black: #191414;
 $spotify-white: #FFFFFF;
 $spotify-green: #1DB954;
 $spotify-dark-gray: rgb(18,18,18);
+$spotify-highlight-gray: rgb(36,36,36);
 $spotify-light-gray: rgb(179,179,179);
 $spotify-media-controller-gray: rgb(21,21,21);
 
@@ -14,6 +15,7 @@ $apple-light-red: rgb(255, 59, 49);
 $apple-dark-red: rgb(255, 69, 58);
 $apple-light-yellow: rgb(255, 204, 0);
 $apple-dark-yellow: rgb(255, 214, 10);
+$apple-border-gray: rgb(108, 105, 108);
 
 .spotify-container {
     position: absolute;
@@ -24,8 +26,20 @@ $apple-dark-yellow: rgb(255, 214, 10);
     grid-template-columns: 280px auto 280px; 
     grid-template-areas: "left-sidebar main right-sidebar";
     overflow: hidden;
+    border: 1px solid ;
+
+    
 }
 
+:is(h1, h2, h3, h4, h5, h6) {
+    margin: 0;
+    padding: 0;
+}
+
+h6 { font-weight: 400; font-size: 10px; padding: 2px;}
+h6:hover { color: white; text-decoration: underline;}
+
+p { margin: 0; padding: 0; }
 
 .spotify-main {
     grid-area: "main";
@@ -45,6 +59,7 @@ $apple-dark-yellow: rgb(255, 214, 10);
     height: 100%;
     width: 100%;
     color: $spotify-light-gray;
+    border: inherit;
 
     .header {
         grid-area: "header";
@@ -58,26 +73,33 @@ $apple-dark-yellow: rgb(255, 214, 10);
         width: calc(100% - 50px);
         border-bottom: 2px solid $spotify-media-controller-gray;
 
+        .nav-icon {
+            height: 100%;
+            width: 60px;
+        }
+
         .nav-card {
             height: 40px;
             width: 100%;
-            border: 1px solid black;
             display: flex;
             flex-direction: row;
             align-items: center;
-
-            .icon {
-                height: 100%;
-                width: 60px;
-                background: white;
-            }
-
         }
 
         .nav-card:hover {
             color: white;
         }
 
+        .nav-card-clicked {
+            background: $spotify-highlight-gray;
+            height: 40px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 5px;
+            color: white;
+        }
         
     }
 
@@ -102,8 +124,63 @@ $apple-dark-yellow: rgb(255, 214, 10);
     grid-area: "right-sidebar";
     background: black;
     display: grid;
-    height: 100%;
-    width: 100%;
+    grid-template-rows: 60px calc(100% - 60px);
+    grid-template-areas: "header" "list";
+    padding-left: 1.3rem;
+    height: 100vh;
+    width: calc(100% - 1.3rem);
+    border: inherit;
+
+    .header {
+        grid-area: header;
+        height: 100%;
+        width: 100%;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .friends-list {
+        color: $spotify-light-gray;
+        grid-area: "list";
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    .friend-card {
+        display: grid;
+        grid-template-columns: 50px calc(100% - 50px - 1.2rem);
+        grid-template-areas: "photo content";
+        margin: 1.5rem 0;
+
+        .friend-card-photo {
+            grid-area: "photo";
+            height: 100%;
+            width: 100%;
+
+            .image {
+                height: 40px;
+                width: 40px;
+                border-radius: 25px;
+            }            
+        }
+        
+        .friend-card-content {
+            display: flex;
+            flex-direction: column;
+
+            .content-top {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
 }
 
 .button-container {
@@ -125,93 +202,3 @@ $apple-dark-yellow: rgb(255, 214, 10);
 .close { background: $apple-dark-red }
 .minimize { background: $apple-dark-yellow}
 .expand { background: $apple-dark-green }
-  
-
-
-
-
-
-
-
-
-
-.sidebar-content {
-    height: fit-content;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    align-items: center;
-}
-
-.image {
-    height: 40px;
-    width: 40px;
-    border-radius: 50px;
-    background: white;
-    margin-right: 5px;
-}
-
-
-
-
-
-.conversation {
-    height: 65px;
-    width: 92%;
-    border-radius: 6px;
-    color: rgb(209, 209, 214);
-    display: flex;
-    flex-direction: row;
-}
-
-.image-container {
-    height: 100%;
-    width: 22%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
-  
-
-
-
-.conversation-content {
-    height: 100%;
-    width: 78%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: left;
-    text-overflow: ellipsis;
-    border-bottom: thin solid rgb(196, 196, 196);
-
-    .content-top {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        margin-top: 2px;
-        justify-content: space-between;
-
-        p {
-            margin-top: 5px;
-            margin-right: 10px;
-            color: rgb(199, 199, 204);
-        }
-    }
-
-    h5 {
-        margin: 0px;
-        margin-top: 5px;
-        padding: 0px;
-        color: white;
-    }
-
-    p {
-        margin: 0px;
-        padding: 0px;
-        font-size: 6px;
-        font-weight: 500;
-    }
-}

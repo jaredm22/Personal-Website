@@ -5,11 +5,15 @@ import React from 'react';
 
 
 export default function Sidebar(props: any) {
-    var [ clicked, setClick ] = React.useState(true);
+    var [ clicked, setClicked ] = React.useState("");
 
     const examples = [];
     for (var i = 0; i < 20; i++) {
         examples.push(i);
+    }
+
+    function handleChildClick(conversationId: string) {
+        setClicked(conversationId);
     }
 
     return(
@@ -30,14 +34,7 @@ export default function Sidebar(props: any) {
             
             <div className="sidebar-content">
                 <div className="pinned-container">
-                    <div className="pinned" onClick={() => setClick(!clicked)} style={clicked ? {background: "rgb(54, 134, 237)"} : {background: "none"}}>
-                        <div className="pinned-photo">
-                            <img className="image-pinned" src={headshot}/>
-                        </div>
-                        <div className="pinned-name">
-                            <div className="name">Jared Min</div>
-                        </div>
-                    </div>
+                    <Conversation type="pinned"/>
                 </div>
                 {examples.map(() => {
                     return (<Conversation key={`conversation-${i}`}/>)

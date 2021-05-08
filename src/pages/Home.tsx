@@ -3,7 +3,7 @@ import Main from '../components/Main';
 import React from 'react';
 
 
-export default function Home(props: any) {
+export default function Messenger(props: any) {
     const [ selected, setSelected ] = React.useState(null);
 
     function handleChildClick(childData: any) {
