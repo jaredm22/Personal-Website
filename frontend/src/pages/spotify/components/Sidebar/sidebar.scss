@@ -71,7 +71,6 @@ $apple-border-gray: rgb(108, 105, 108);
             border-radius: 5px;
             color: white;
         }
-        
     }
 
     .playlists {
@@ -82,7 +81,8 @@ $apple-border-gray: rgb(108, 105, 108);
         margin-left: 25px;
 
         .playlist {
-            font-size: smaller;
+            font-size: 14px;
+            font-weight: 400;
             margin: 1em 0;
         }
 

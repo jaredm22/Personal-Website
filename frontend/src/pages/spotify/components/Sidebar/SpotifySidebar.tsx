@@ -10,7 +10,6 @@ function NavCard(props: any) {
         e.preventDefault();
         props.onChildClick(props.navItem); // pass any argument to the callback
     }
-    console.log(props);
 
     return(
         <div className={`nav-card${props.clicked ? "-clicked": ""}`} onClick={handleClick}>
@@ -66,7 +65,7 @@ export default function Sidebar(props: any) {
                 </div>
 
                 <NavBar onChildClick={props.onNavClick} selectedNavItem={props.selectedNavItem}/>
-                <Playlists key="playlists" onChildClick={props.onPlaylistClick} selectedPlaylist={props.selectedPlaylist}/>
+                <Playlists key="playlists" onChildClick={props.onPlaylistClick} selectedPlaylist={props.selectedPlaylist} playlists={props.playlists}/>
             </div>
 
         : 
@@ -77,11 +76,9 @@ export default function Sidebar(props: any) {
             </div>
 
             <div className="friends-list">
-                {examples.map((i) => {
-                    return(
-                        <FriendCard key={`friends-${i}`}/>   
-                    )
-                })}
+                {examples.map((i) => 
+                    <FriendCard key={`friends-${i}`}/>
+                )}
             </div>
         </div>
     )
