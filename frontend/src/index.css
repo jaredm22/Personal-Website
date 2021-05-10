@@ -4,9 +4,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url(https://i.redd.it/iibrptucse951.png) no-repeat;
-  background-size: cover;
-  overflow: scroll;
-  /* overflow: hidden; */
+  background-size: auto;
+  overflow: hidden;
 }
 
 code {

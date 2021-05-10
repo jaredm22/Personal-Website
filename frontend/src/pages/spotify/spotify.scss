@@ -188,7 +188,7 @@ p { margin: 0; padding: 0; }
 
 .left-sidebar {
     grid-area: left-sidebar;
-    background: black;
+    background: $spotify-black;
     display: grid;
     grid-template-rows: 50px 240px calc(100% - 50px - 240px);
     grid-template-areas: "header" "navbar" "playlists";
@@ -263,7 +263,7 @@ p { margin: 0; padding: 0; }
 
 .right-sidebar {
     grid-area:right-sidebar;
-    background: black;
+    background: $spotify-black;
     display: grid;
     grid-template-rows: 60px calc(100% - 60px);
     grid-template-areas: "header" "list";

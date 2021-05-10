@@ -74,8 +74,6 @@ export default function ContentView(props: any) {
                         {tracks}
                 </div>
             </div>
-
-           
         </div>
     )
 }

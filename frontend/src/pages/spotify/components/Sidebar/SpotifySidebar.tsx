@@ -60,7 +60,7 @@ export default function Sidebar(props: any) {
         props.side === "left" ?
             <div className="left-sidebar">
                 <div className="header">
-                    <WindowButtons/>
+                    <WindowButtons minimizeHandler={props.minimizeHandler}/>
                 </div>
 
                 <NavBar onChildClick={props.onNavClick} selectedNavItem={props.selectedNavItem}/>

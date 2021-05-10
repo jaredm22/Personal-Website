@@ -1,5 +1,4 @@
 import Conversation from '../Conversation/Conversation';
-import './sidebar.scss';
 import { useState, useEffect} from 'react';
 import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
 
@@ -47,7 +46,7 @@ export default function Sidebar(props: any) {
         <div className="sidebar" onMouseDown={handleMouseDown}>
             <div className="sidebar-header">
                 <div className="sidebar-header-top">
-                    <WindowButtons/>
+                    <WindowButtons minimizeHandler={props.minimizeHandler}/>
                 </div>
 
                 <div className="sidebar-header-bottom">

@@ -33,7 +33,7 @@ export default function Transcript(props: any) {
             <div className="main-header">
                 
             </div>
-            <div className="main-content" id="m">
+            <div className="main-content">
                 <div className="timestamp">
                     <h6>Yesterday</h6>
                     <p>8:35 PM</p>

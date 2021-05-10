@@ -1,11 +1,13 @@
 import Sidebar from './components/Sidebar/Sidebar';
 import Transcript from './components/Transcript/Transcript';
-import React from 'react';
+import React, { useRef } from 'react';
+import { Rnd } from 'react-rnd';
 import './messenger.scss';
 
 
 export default function Messenger(props: any) {
     const [ selected, setSelected ] = React.useState(100);
+    const [ minimized, setMinimized ] = React.useState(false);
     const [ topLeftCoordinates, setTopLeftCoordinates ] = React.useState([0, 0]);
     const [ dragging, setDragging ] = React.useState(false);
 
@@ -14,12 +16,26 @@ export default function Messenger(props: any) {
         setSelected(childData);
     }
 
+    function handleMinimize() {
+        setMinimized(true);
+    }
+  
+
     console.log(selected);
 
     return(
-        <div className="container" style={{top: topLeftCoordinates[0], left: topLeftCoordinates[1]}}>
-            <Sidebar onChildClick={handleChildClick} selectedIndex={selected}/>
-            <Transcript key={`transcript${"-" + selected}`} selectedIndex={selected} />
-        </div>
+        <Rnd
+            className="messenger-container"
+            default={{
+                x: 0,
+                y: 0,
+                width: "100%",
+                height: "100%",
+            }}
+            style={{display: (minimized ? "none" : "grid")}}
+        >
+                <Sidebar onChildClick={handleChildClick} selectedIndex={selected} minimizeHandler={handleMinimize}/>
+                <Transcript key={`transcript${"-" + selected}`} selectedIndex={selected} />
+        </Rnd>              
     )
 }

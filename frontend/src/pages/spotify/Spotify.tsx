@@ -3,9 +3,9 @@ import './spotify.scss';
 import Sidebar from './components/Sidebar/SpotifySidebar';
 import Main from './components/SpotifyMain';
 import MediaController from './components/MediaController';
+import { Rnd } from 'react-rnd';
 
 
-const axios = require('axios');
 const SPOTIFY_API_TOKEN = "";
 
 var SpotifyWebApi = require('spotify-web-api-node');
@@ -20,7 +20,11 @@ export default function Spotify(props: any) {
     const [playlistInfo, setPlaylistInfo] = useState([]);
     const [playlistTracks, setPlaylistTracks] = useState([]);
     const [data, setData] = useState({});
+    const [ minimized, setMinimized ] = React.useState(false);
 
+    function handleMinimize() {
+        setMinimized(true);
+    }
 
     function handleNavClick(navItem: string) {
         setNavItem(navItem);
@@ -64,8 +68,17 @@ export default function Spotify(props: any) {
     console.log(playlistInfo);
     console.log(playlistTracks);
     return(
-            <div className="spotify-container">
-                <Sidebar
+            <Rnd
+                className="spotify-container"
+                default={{
+                    x: 0,
+                    y: 0,
+                    width: "100%",
+                    height: "100%",
+                }}
+                style={{display: (minimized ? "none" : "grid")}}
+            >
+                   <Sidebar
                     key={`sidebar-left`}
                     selectedNavItem={selectedNavItem}
                     selectedPlaylist={selectedPlaylistId}
@@ -74,6 +87,7 @@ export default function Spotify(props: any) {
                     playlists={playlistInfo}
                     side="left" 
                     dataLoaded={dataLoaded}
+                    minimizeHandler={handleMinimize}
                 />
                 {selectedPlaylistId !== "" && playlistInfo !== null ?
                     <Main 
@@ -88,6 +102,6 @@ export default function Spotify(props: any) {
                 }
                 <Sidebar key={"sidebar-right"} side="right"/>
                 <MediaController/>
-            </div>
+            </Rnd>
     );
 }
