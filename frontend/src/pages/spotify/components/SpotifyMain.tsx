@@ -8,7 +8,7 @@ export default function Main(props: any) {
             <div className="main-nav">
 
             </div>
-            <ContentView/>
+            <ContentView {...props}/>
         </div>
     )
 }

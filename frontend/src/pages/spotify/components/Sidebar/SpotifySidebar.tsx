@@ -1,13 +1,16 @@
 import React from 'react';
-import headshot from '../../../../images/Headshot.jpg';
-import WindowButtons from '../../../../components/WindowButtons.tsx/WindowButtons';
+import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
+import FriendCard from './components/FriendCard';
+import Playlists from './components/Playlists';
 import './sidebar.scss';
 
 function NavCard(props: any) {
 
-    function handleClick(event: any) {
+    function handleClick(e: any) {
+        e.preventDefault();
         props.onChildClick(props.navItem); // pass any argument to the callback
     }
+    console.log(props);
 
     return(
         <div className={`nav-card${props.clicked ? "-clicked": ""}`} onClick={handleClick}>
@@ -19,12 +22,9 @@ function NavCard(props: any) {
     )
 }
 
-function NavBar(props: any) {
-    const [clickedItem, setClickedItem] = React.useState("Home"); 
 
-    function handleChildClick(navItem: string) {
-        setClickedItem(navItem);
-    }
+function NavBar(props: any) {
+
 
     const navbarItems = [
         "Home", 
@@ -34,79 +34,56 @@ function NavBar(props: any) {
         "Liked Songs"
     ];
 
-    console.log(clickedItem);
-
     return(
         <div className="navbar">
             {navbarItems.map((x) => 
                 <NavCard 
+                    key={`nav-${x}`}
                     navItem={x} 
-                    clicked={clickedItem === x} 
-                    onChildClick={handleChildClick}
+                    clicked={props.selectedNavItem === x} 
+                    onChildClick={props.onChildClick}
                 />
             )}
         </div>
     )
 }
 
+
 export default function Sidebar(props: any) {
+
     const examples = [];
     for (var i = 0; i < 60; i++) {
         examples.push(i);
     }
+    console.log(props);
+
 
     return(
         props.side === "left" ?
-        <div className="left-sidebar">
+            <div className="left-sidebar">
                 <div className="header">
                     <WindowButtons/>
                 </div>
-               
 
-                <NavBar onChildClick={props.onChildClick}/>
-
-                <div className="playlists"> 
-                    {examples.map(() => {
-                        return(
-                            <div className="playlist">
-                                <p>late night studying</p>
-                            </div>
-                        )
-                    })}
-                </div>
+                <NavBar onChildClick={props.onNavClick} selectedNavItem={props.selectedNavItem}/>
+                <Playlists key="playlists" onChildClick={props.onPlaylistClick} selectedPlaylist={props.selectedPlaylist}/>
             </div>
+
         : 
+
         <div className="right-sidebar">
             <div className="header">
                 <h4>Friend Activity</h4>
             </div>
 
             <div className="friends-list">
-                {examples.map(() => {
+                {examples.map((i) => {
                     return(
-                        <div className="friend-card">
-                            <div className="friend-card-photo">
-                                <img className="image" src={headshot}/>
-                            </div>
-
-                            <div className="friend-card-content">
-                                
-                                <div className="content-top">
-                                    <h5>Jared Min</h5>
-                                    <h6>2 Hr</h6>
-                                </div>
-                                    
-                                <h6>No Role Modelz • J-Cole</h6>
-                                <h6>Summer Jams</h6>
-
-                                <div className="friend-card-timestamp">
-                                
-                                </div> 
-                            </div>
-                        </div>
+                        <FriendCard key={`friends-${i}`}/>   
                     )
                 })}
             </div>
         </div>
     )
 }
+

@@ -19,6 +19,21 @@
     -webkit-backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
 }
   
+
+
+.search-bar {
+    height: 25px;
+    width: 295px;
+    border-radius: 8px;
+    background-color: rgba(48, 50, 52, 0.6);
+    backdrop-filter: blur(60px) saturate(160%);
+    -webkit-backdrop-filter: blur(60px) saturate(160%);
+    color: white;
+    border: 1px solid rgb(79, 80, 82);
+}
+
+
+
 .sidebar-header {
     height: 90px;
     width: 100%;
@@ -44,21 +59,6 @@
     align-items: center;
     justify-content: center;
 }
-
-.search-bar {
-    height: 25px;
-    width: 295px;
-    border-radius: 8px;
-    background-color: rgba(48, 50, 52, 0.6);
-    backdrop-filter: blur(60px) saturate(160%);
-    -webkit-backdrop-filter: blur(60px) saturate(160%);
-    color: white;
-    border: 1px solid rgb(79, 80, 82);
-}
-
-
-
-
 
 
 

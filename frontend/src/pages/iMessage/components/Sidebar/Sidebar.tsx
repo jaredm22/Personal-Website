@@ -2,7 +2,7 @@ import Conversation from '../Conversation/Conversation';
 import './sidebar.scss';
 import headshot from '../images/Headshot.jpg';
 import React from 'react';
-import WindowButtons from '../../../../components/WindowButtons.tsx/WindowButtons';
+import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
 
 
 export default function Sidebar(props: any) {
@@ -23,8 +23,8 @@ export default function Sidebar(props: any) {
                 <div className="sidebar-header-bottom">
                     <input className="search-bar" placeholder="  Search"></input>
                 </div>
-            </div>
-            
+            </div>  
+
             <div className="sidebar-content">
                 <div className="pinned-container">
                     <Conversation 

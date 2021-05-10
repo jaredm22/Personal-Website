@@ -120,8 +120,8 @@ p { margin: 0; padding: 0; }
                 .list-item, .list-header {
                     width: 100%;
                     display: grid;
-                    grid-template-columns: 50px 250px 250px 250px 60px;
-                    grid-template-areas: "item-number title album-name added-by time";
+                    grid-template-columns: 5% 25% 25% 20% 20% 5%;
+                    grid-template-areas: "item-number title album-name added-by date-added time";
                     text-align: left;
                     box-sizing: border-box;
                     padding: 0.2rem 0.5rem;
@@ -148,6 +148,11 @@ p { margin: 0; padding: 0; }
 
                     .album-name {
                         grid-area: album-name;
+                        margin: 0 1rem;
+                    }
+
+                    .date-added {
+                        grid-area: date-added;
                         margin: 0 1rem;
                     }
 
