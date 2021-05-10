@@ -6,7 +6,7 @@ import MediaController from './components/MediaController';
 import { Rnd } from 'react-rnd';
 
 
-const SPOTIFY_API_TOKEN = "";
+const SPOTIFY_API_TOKEN = "BQB2YZJtQDlZNr6DNVF_rrRlKgEZXPQhihKkn_Ixr32oJULubJojwQ232t_WdaUjoUftxIUxLofk94ibmF0TFfDXHp_LyRO8pxlpmS9hZ47P3A-ZzehaGUqb8uhWtxWHUIGAe83_F1AY9jlUXXsRR69fktWu";
 
 var SpotifyWebApi = require('spotify-web-api-node');
 var spotifyApi = new SpotifyWebApi();
@@ -74,7 +74,7 @@ export default function Spotify(props: any) {
                     x: 0,
                     y: 0,
                     width: "100%",
-                    height: "100%",
+                    height: "93%",
                 }}
                 style={{display: (minimized ? "none" : "grid")}}
             >
