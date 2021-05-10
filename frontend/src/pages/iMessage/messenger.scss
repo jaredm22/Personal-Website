@@ -55,6 +55,8 @@ $apple-border-gray: rgb(108, 105, 108);
 .main-content {
   height: 100%;
   width: 100%;
+  padding: 55px 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background: rgb(30,30,30);
@@ -129,14 +131,14 @@ $apple-border-gray: rgb(108, 105, 108);
   align-items: center;
 
   h6 {
-    font-size: 10px;
+    font-size: 12px;
     margin: none;
   }
 
   p {
     margin: none;
     margin-left: 5px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
 import FriendCard from './components/FriendCard';
 import Playlists from './components/Playlists';
-import './sidebar.scss';
 
 function NavCard(props: any) {
 

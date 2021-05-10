@@ -3,7 +3,6 @@ import './spotify.scss';
 import Sidebar from './components/Sidebar/SpotifySidebar';
 import Main from './components/SpotifyMain';
 import MediaController from './components/MediaController';
-import Playlists from './components/Sidebar/components/Playlists';
 
 
 const axios = require('axios');
@@ -18,7 +17,7 @@ export default function Spotify(props: any) {
     const [dataLoaded, setDataLoaded] = useState(false);
     const [selectedNavItem, setNavItem] = useState("Home");
     const [selectedPlaylistId, setSelectedPlaylist] = useState("");
-    const [playlistInfo, setPlaylistInfo] = useState(null);
+    const [playlistInfo, setPlaylistInfo] = useState([]);
     const [playlistTracks, setPlaylistTracks] = useState([]);
     const [data, setData] = useState({});
 
@@ -32,7 +31,6 @@ export default function Spotify(props: any) {
     }
 
     useEffect(() => {
-        var playlistInfo = [];
         spotifyApi.getUserPlaylists('1236247390', {limit: 50})
             .then(function(data: any) {
                 setPlaylistInfo(data.body.items);
@@ -51,7 +49,8 @@ export default function Spotify(props: any) {
                                     tracks: res.body.items,
                                 }
                             )
-                        });
+                        })
+                        .catch((e: any) =>  console.log(e)) ;
                 });
                 setPlaylistTracks(trackData);
             },function(err: any) {
@@ -76,7 +75,17 @@ export default function Spotify(props: any) {
                     side="left" 
                     dataLoaded={dataLoaded}
                 />
-                <Main key={`main${"-" + selectedPlaylistId}`} data={data} selectedPlaylist={selectedPlaylistId} playlistInfo={playlistInfo} playlistTracks={playlistTracks}/>
+                {selectedPlaylistId !== "" && playlistInfo !== null ?
+                    <Main 
+                        key={`main${"-" + selectedPlaylistId}`} 
+                        data={data} 
+                        selectedPlaylist={selectedPlaylistId} 
+                        playlistInfo={playlistInfo.find((p: any) => p.id === selectedPlaylistId)} 
+                        playlistTracks={playlistTracks.find((p: any) => p.id === selectedPlaylistId)}
+                    />
+                    :
+                    false
+                }
                 <Sidebar key={"sidebar-right"} side="right"/>
                 <MediaController/>
             </div>

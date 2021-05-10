@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import headshot from '../../../../images/Headshot.jpg';
+import MediaCard from "../MediaCard";
 
 function parseTime(time: number) {
     var minutes = Math.floor((time/1000)/60);
@@ -18,11 +19,10 @@ export default function ContentView(props: any) {
 
     if (props.selectedPlaylist !== "") {
         // let playlistInfo = props.playlistInfo;
-        let playlistTracks = props.playlistTracks.find((p: any) => p.id === props.selectedPlaylist);
 
         let index = 1;
         
-        tracks = playlistTracks.tracks.map((track: any) => {
+        tracks = props.playlistTracks.tracks.map((track: any) => {
 
             return(
                 <div key={`list-item-${track.track.id}`} className="list-item" onClick={() => setSelectedSong(track.track.id)} style={selectedSong === track.track.id ? {background: "rgb(40, 40, 40)"} : {}}>
@@ -35,7 +35,6 @@ export default function ContentView(props: any) {
                         </div>
                     </div>
                     <h6 className="album-name">{track.track.album.name}</h6>
-                    {/* <h6 className="added-by">Jared Min</h6> */}
                     <h6 className="added-date">Oct 27, 2020</h6>
                     <h6 className="time">{`${parseTime(track.track.duration_ms)}`}</h6>
                 </div>
@@ -43,17 +42,17 @@ export default function ContentView(props: any) {
         });
     }
     
-    let playlistInfo = props.playlistInfo.find((p: any) => p.id === props.selectedPlaylist);
-
+    let playlistInfo = props.playlistInfo;
     return(
         <div className={`content-view${props.type === "album" ? "-album" : "-playlist"}`}>
             <div className="content-header">
-                <img className="content-header-art" src={playlistInfo.images[0]}/>
+                <img className="content-header-art" src={playlistInfo.images[0].url}/>
+                {/* <MediaCard mediaName={playlistInfo.name} artistName={"Jared"}/> */}
                 <div className="content-header-info">
                     <h6>PLAYLIST</h6>
-                    <h1>{playlistInfo.name}</h1>
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <img height="40px" src={headshot}/>
+                    <h1 style={{marginTop: "10px"}}>{playlistInfo.name}</h1>
+                    <div style={{display: "flex", flexDirection: "row", marginTop: "1rem"}}>
+                        <img height="30px" src={headshot} style={{borderRadius: "25px"}}/>
                         <h6>Jared • {playlistInfo.tracks.total} Songs, 2 hr 18 min</h6>
                     </div>
                 </div>
@@ -69,13 +68,14 @@ export default function ContentView(props: any) {
                         <h6 className="item-number">#</h6>
                         <div className="title">TITLE</div>
                         <h6 className="album-name">ALBUM</h6>
-                        {/* <h6 className="added-by">ADDED-BY</h6> */}
-                        <h6 className="added-date">Date-added</h6>
+                        <h6 className="added-date">DATE ADDED</h6>
                         <h6 className="time">Time</h6>
                     </div>
                         {tracks}
                 </div>
             </div>
+
+           
         </div>
     )
 }
