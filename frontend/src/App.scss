@@ -70,8 +70,16 @@ $apple-border-gray: rgb(108, 105, 108);
   height: 12px;
   width: 12px;
   border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .close { background: $apple-sunset-orange }
 .minimize { background: $apple-pastel-orange}
 .expand { background: $apple-malachite }
+
+.close:hover, .minimize:hover, .expand:hover {
+  display: flex;
+}

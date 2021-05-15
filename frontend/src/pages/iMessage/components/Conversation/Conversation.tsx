@@ -9,7 +9,13 @@ export default function Conversation(props: any) {
 
     return(
         props.type === "pinned" ?
-            <div className={`pinned ${props.clicked ? "clicked": ""}`} onClick={handleClick}>
+            <div className="pinned" 
+                onClick= {handleClick}
+                style= { props.clicked ? 
+                    { background: "rgb(10,132,255)" } : 
+                    { background: "none" }
+                }
+            >
                 <div className="pinned-photo">
                     <img className="image-pinned" src={headshot}/>
                 </div>
@@ -18,11 +24,24 @@ export default function Conversation(props: any) {
                 </div>
             </div>
         :
-            <div className={`conversation ${props.clicked ? "clicked": ""}`} onClick={handleClick}>
+            <div className="conversation"
+                 onClick={handleClick} 
+                 style={props.clicked ? 
+                    { background: "rgb(10,132,255)" } : 
+                    { background: "none" }
+            }>
                 <div className="image-container">
                     <img className="image" src={headshot}/>
                 </div>
-                <div className="conversation-content">
+                <div 
+                    className="conversation-content"
+                    style={props.clicked ? 
+                        { 
+                            borderBottom: "none",
+                            color: "white",
+                        } : 
+                        { }}
+                >
                     <div className="content-top">
                         <h5>Jared Min</h5>
                         <p>Yesterday</p>

@@ -4,101 +4,114 @@ import Sidebar from './components/Sidebar/SpotifySidebar';
 import Main from './components/SpotifyMain';
 import MediaController from './components/MediaController';
 import { Rnd } from 'react-rnd';
-
-
-const SPOTIFY_API_TOKEN = "BQB2YZJtQDlZNr6DNVF_rrRlKgEZXPQhihKkn_Ixr32oJULubJojwQ232t_WdaUjoUftxIUxLofk94ibmF0TFfDXHp_LyRO8pxlpmS9hZ47P3A-ZzehaGUqb8uhWtxWHUIGAe83_F1AY9jlUXXsRR69fktWu";
+import axios from 'axios';
 
 var SpotifyWebApi = require('spotify-web-api-node');
 var spotifyApi = new SpotifyWebApi();
-spotifyApi.setAccessToken(SPOTIFY_API_TOKEN);
 
 export default function Spotify(props: any) {
 
-    const [dataLoaded, setDataLoaded] = useState(false);
-    const [selectedNavItem, setNavItem] = useState("Home");
-    const [selectedPlaylistId, setSelectedPlaylist] = useState("");
-    const [playlistInfo, setPlaylistInfo] = useState([]);
-    const [playlistTracks, setPlaylistTracks] = useState([]);
-    const [data, setData] = useState({});
-    const [ minimized, setMinimized ] = React.useState(false);
+    const [ state, setState ] = useState({
+        dataLoaded: false,
+        selectedNavItem: "Home",
+        selectedPlaylistId: "",
+        playlistInfo: [],
+        playlistTracks: [],
+        data: {},
+        minimized: false,
+        x: 0, 
+        y: 0, 
+        width: "100%",
+        height: "100%",
+    });
 
     function handleMinimize() {
-        setMinimized(true);
+        setState(prevState => {
+            return { ...prevState, minimized: true };
+        });
     }
 
     function handleNavClick(navItem: string) {
-        setNavItem(navItem);
+        setState(prevState => {
+            return { ...prevState, selectedNavItem: navItem };
+        });
     }
 
     function handlePlaylistClick(playlistId: string) {
-        setSelectedPlaylist(playlistId);
+        setState(prevState => {
+            return { ...prevState, selectedPlaylistId: playlistId};
+        });
     }
 
     useEffect(() => {
-        spotifyApi.getUserPlaylists('1236247390', {limit: 50})
-            .then(function(data: any) {
-                setPlaylistInfo(data.body.items);
-                return data.body.items;
-            })
-            .then(function(playlists: any) {
-                console.log(playlists);
-                var trackData: any = []
 
-                playlists.forEach((p:any) => {
-                    spotifyApi.getPlaylistTracks(p.id)
-                        .then((res: any) => {
-                            trackData.push(
-                                {
-                                    id: p.id,
-                                    tracks: res.body.items,
-                                }
-                            )
-                        })
-                        .catch((e: any) =>  console.log(e)) ;
-                });
-                setPlaylistTracks(trackData);
-            },function(err: any) {
-                console.log('Something went wrong!', err);
-            });
+        axios.get("http://localhost:8000/getAccessToken").then((res) => console.log(res));
+        axios.get("http://localhost:8000/getPlaylists").then((res) => {
+            setState( prevState => {
+                return {
+                    ...prevState,
+                    playlistInfo: res.data.playlistInfo,
+                    playlistTracks: res.data.playlistTracks,
+                }
+            })
+        });
     }, []);
     
-    // TO-DO : Make a fake login page to intially render while data is grabbed
+    // // TO-DO : Make a fake login page to intially render while data is grabbed
 
-    console.log(data);
-    console.log(playlistInfo);
-    console.log(playlistTracks);
+    // console.log(state.data);
+    // console.log(state.playlistInfo);
+    // console.log(state.playlistTracks);
     return(
-            <Rnd
-                className="spotify-container"
-                default={{
-                    x: 0,
-                    y: 0,
-                    width: "100%",
-                    height: "93%",
-                }}
-                style={{display: (minimized ? "none" : "grid")}}
-            >
-                   <Sidebar
+        <Rnd
+            className="spotify-container"
+            size={{ width: state.width,  height: state.height }}
+            position={{ x: state.x, y: state.y }}
+            onDragStop={(e, d) => {
+                console.log(d);
+                setState( prevState => {
+                    return {
+                        ...prevState,
+                        x: d.x,
+                        y: d.y,
+                    }
+                })
+            }}
+            onResizeStop={(e, direction, ref, delta, position) => {
+                setState( prevState => {
+                    return {
+                        ...prevState,
+                        width: ref.style.width,
+                        height: ref.style.height,
+                        ...position,
+                    }
+                })
+            }}
+            style={{display: (state.minimized ? "none" : "grid")}}
+        >
+                <Sidebar
                     key={`sidebar-left`}
-                    selectedNavItem={selectedNavItem}
-                    selectedPlaylist={selectedPlaylistId}
+                    selectedNavItem={state.selectedNavItem}
+                    selectedPlaylist={state.selectedPlaylistId}
                     onNavClick={handleNavClick} 
                     onPlaylistClick={handlePlaylistClick}
-                    playlists={playlistInfo}
+                    playlists={state.playlistInfo}
                     side="left" 
-                    dataLoaded={dataLoaded}
+                    dataLoaded={state.dataLoaded}
                     minimizeHandler={handleMinimize}
                 />
-                {selectedPlaylistId !== "" && playlistInfo !== null ?
+                {state.selectedPlaylistId !== "" && state.playlistInfo !== null ?
                     <Main 
-                        key={`main${"-" + selectedPlaylistId}`} 
-                        data={data} 
-                        selectedPlaylist={selectedPlaylistId} 
-                        playlistInfo={playlistInfo.find((p: any) => p.id === selectedPlaylistId)} 
-                        playlistTracks={playlistTracks.find((p: any) => p.id === selectedPlaylistId)}
+                        key={`main${"-" + state.selectedPlaylistId}`} 
+                        data={state.data} 
+                        selectedPlaylist={state.selectedPlaylistId} 
+                        playlistInfo={state.playlistInfo.find((p: any) => p.id === state.selectedPlaylistId)} 
+                        playlistTracks={state.playlistTracks.find((p: any) => p.id === state.selectedPlaylistId)}
                     />
                     :
-                    false
+                    <div className="spotify-main">
+
+                    </div>
                 }
                 <Sidebar key={"sidebar-right"} side="right"/>
                 <MediaController/>

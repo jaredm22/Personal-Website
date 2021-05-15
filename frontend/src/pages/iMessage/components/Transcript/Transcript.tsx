@@ -14,11 +14,6 @@ export default function Transcript(props: any) {
     const [ messages, setMessages ] = useState<any[]>(examples);
     const [ input, setInput ] = useState("");
 
-    // useEffect(() => {
-    //     document.title = `You clicked ${count} times`;
-    // }, [count]);
-    // setMessages(examples);
-
     function createMessage(b: any) {
         if (b) {
             setMessages(prevState => [...prevState, [100, input, "sent"]]);
@@ -26,7 +21,7 @@ export default function Transcript(props: any) {
         }
     }
 
-    console.log(messages);
+    // console.log(messages);
     console.log(input);
     return(
         <div className="main">

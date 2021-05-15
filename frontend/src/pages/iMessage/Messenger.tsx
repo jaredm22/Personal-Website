@@ -1,41 +1,72 @@
 import Sidebar from './components/Sidebar/Sidebar';
 import Transcript from './components/Transcript/Transcript';
-import React, { useRef } from 'react';
+import React from 'react';
 import { Rnd } from 'react-rnd';
 import './messenger.scss';
+import useState from 'react';
 
 
 export default function Messenger(props: any) {
-    const [ selected, setSelected ] = React.useState(100);
-    const [ minimized, setMinimized ] = React.useState(false);
-    const [ topLeftCoordinates, setTopLeftCoordinates ] = React.useState([0, 0]);
-    const [ dragging, setDragging ] = React.useState(false);
 
+    const [ state, setState ] = React.useState({
+        selected: 100,
+        minimized: false,
+        x: 0, 
+        y: 0, 
+        width: "100%",
+        height: "100%",
+    });
 
-    function handleChildClick(childData: any) {
-        setSelected(childData);
+    function handleSelect(selectedId: any) {
+        setState(prevState => {
+            return {
+                ...prevState,
+                selected: selectedId,
+            }
+        });
     }
 
     function handleMinimize() {
-        setMinimized(true);
+        setState(prevState => {
+            return { 
+                ...prevState, 
+                minimized: true, 
+            };
+        });
     }
   
 
-    console.log(selected);
+    console.log(state.selected);
 
     return(
         <Rnd
             className="messenger-container"
-            default={{
-                x: 0,
-                y: 0,
-                width: "100%",
-                height: "93%",
+            size={{ width: state.width,  height: state.height }}
+            position={{ x: state.x, y: state.y }}
+            onDragStop={(e, d) => {
+                console.log(d);
+                setState( prevState => {
+                    return {
+                        ...prevState,
+                        x: d.x,
+                        y: d.y,
+                    }
+                })
             }}
-            style={{display: (minimized ? "none" : "grid")}}
+            onResizeStop={(e, direction, ref, delta, position) => {
+                setState( prevState => {
+                    return {
+                        ...prevState,
+                        width: ref.style.width,
+                        height: ref.style.height,
+                        ...position,
+                    }
+                })
+            }}
+            style={{display: (state.minimized ? "none" : "grid")}}
         >
-                <Sidebar onChildClick={handleChildClick} selectedIndex={selected} minimizeHandler={handleMinimize}/>
-                <Transcript key={`transcript${"-" + selected}`} selectedIndex={selected} />
+                <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize}/>
+                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} />
         </Rnd>              
     )
 }

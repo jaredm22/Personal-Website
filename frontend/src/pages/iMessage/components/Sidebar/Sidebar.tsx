@@ -13,37 +13,8 @@ export default function Sidebar(props: any) {
         examples.push(i);
     }
 
-    function handleDrag(e: any) {
-        console.log(e);
-    }
-
-    useEffect(() => {
-        const handleMouseUp = () => setMouseDown(false);
-
-        window.addEventListener('mouseup', handleMouseUp);
-
-        return () => {
-            window.addEventListener('mouseup', handleMouseUp);
-        };
-    }, []);
-
-    useEffect(() => {
-        const handleMouseMove = (e: any) => console.log(e);
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, [mouseDown, handleDrag]);
-
-    const handleMouseDown = () => setMouseDown(true);
-
-    console.log(coordinates);
-
-
     return(
-        <div className="sidebar" onMouseDown={handleMouseDown}>
+        <div className="sidebar">
             <div className="sidebar-header">
                 <div className="sidebar-header-top">
                     <WindowButtons minimizeHandler={props.minimizeHandler}/>
