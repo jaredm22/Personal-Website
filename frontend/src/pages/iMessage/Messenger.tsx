@@ -10,6 +10,7 @@ export default function Messenger(props: any) {
     const [ state, setState ] = useState({
         selected: 100,
         minimized: false,
+        expanded: true,
         x: 0, 
         y: 0, 
         width: "100%",
@@ -34,6 +35,18 @@ export default function Messenger(props: any) {
         });
     }
   
+    function handleExpand() {
+        setState(prevState => {
+            return { 
+                ...prevState, 
+                expanded: true, 
+                width: "100%",
+                height: "100%",
+                x: 0,
+                y: 0,
+            };
+        });
+    }
 
     console.log(state.selected);
 
@@ -58,13 +71,14 @@ export default function Messenger(props: any) {
                         ...prevState,
                         width: ref.style.width,
                         height: ref.style.height,
+                        expanded: false, 
                         ...position,
                     }
                 })
             }}
             style={{display: (state.minimized ? "none" : "grid")}}
         >
-                <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize}/>
+                <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize} expandHandler={handleExpand}/>
                 <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} />
         </Rnd>              
     )

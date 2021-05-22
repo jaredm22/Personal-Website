@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './spotify.scss';
 import Sidebar from './components/Sidebar/SpotifySidebar';
 import Main from './components/SpotifyMain';
 import MediaController from './components/MediaController';
 import { Rnd } from 'react-rnd';
-import axios from 'axios';
+// import axios from 'axios';
 
 // var SpotifyWebApi = require('spotify-web-api-node');
 // var spotifyApi = new SpotifyWebApi();
@@ -19,6 +19,7 @@ export default function Spotify(props: any) {
         playlistTracks: [],
         data: {},
         minimized: false,
+        expanded: true,
         x: 0, 
         y: 0, 
         width: "100%",
@@ -28,6 +29,19 @@ export default function Spotify(props: any) {
     function handleMinimize() {
         setState(prevState => {
             return { ...prevState, minimized: true };
+        });
+    }
+
+    function handleExpand() {
+        setState(prevState => {
+            return { 
+                ...prevState, 
+                expanded: true, 
+                width: "100%",
+                height: "100%",
+                x: 0,
+                y: 0,
+            };
         });
     }
 
@@ -43,19 +57,19 @@ export default function Spotify(props: any) {
         });
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        axios.get("http://localhost:8000/getAccessToken").then((res) => console.log(res));
-        axios.get("http://localhost:8000/getPlaylists").then((res) => {
-            setState( prevState => {
-                return {
-                    ...prevState,
-                    playlistInfo: res.data.playlistInfo,
-                    playlistTracks: res.data.playlistTracks,
-                }
-            })
-        });
-    }, []);
+    //     axios.get("http://localhost:8000/getAccessToken").then((res) => console.log(res));
+    //     axios.get("http://localhost:8000/getPlaylists").then((res) => {
+    //         setState( prevState => {
+    //             return {
+    //                 ...prevState,
+    //                 playlistInfo: res.data.playlistInfo,
+    //                 playlistTracks: res.data.playlistTracks,
+    //             }
+    //         })
+    //     });
+    // }, []);
     
     // // TO-DO : Make a fake login page to intially render while data is grabbed
 
@@ -83,6 +97,7 @@ export default function Spotify(props: any) {
                         ...prevState,
                         width: ref.style.width,
                         height: ref.style.height,
+                        expanded: false, 
                         ...position,
                     }
                 })
@@ -99,6 +114,7 @@ export default function Spotify(props: any) {
                     side="left" 
                     dataLoaded={state.dataLoaded}
                     minimizeHandler={handleMinimize}
+                    expandHandler={handleExpand}
                 />
                 {state.selectedPlaylistId !== "" && state.playlistInfo !== null ?
                     <Main 

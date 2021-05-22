@@ -17,7 +17,7 @@ export default function Sidebar(props: any) {
         <div className="sidebar">
             <div className="sidebar-header">
                 <div className="sidebar-header-top">
-                    <WindowButtons minimizeHandler={props.minimizeHandler}/>
+                    <WindowButtons minimizeHandler={props.minimizeHandler} expandHandler={props.expandHandler}/>
                 </div>
 
                 <div className="sidebar-header-bottom">
