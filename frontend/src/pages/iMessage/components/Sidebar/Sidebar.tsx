@@ -1,12 +1,12 @@
 import Conversation from '../Conversation/Conversation';
-import { useState, useEffect} from 'react';
+// import { useState, useEffect} from 'react';
 import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
 
 
 export default function Sidebar(props: any) {
     var selected = props.selectedIndex;
-    const [ coordinates, setCoordinates ] = useState([0,0]);
-    const [ mouseDown, setMouseDown ] = useState(false);
+    // const [ coordinates, setCoordinates ] = useState([0,0]);
+    // const [ mouseDown, setMouseDown ] = useState(false);
 
     const examples = [];
     for (var i = 0; i < 20; i++) {

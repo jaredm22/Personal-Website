@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import headshot from '../../../../images/Headshot.jpg';
 
 export default function Conversation(props: any) {
@@ -17,7 +17,7 @@ export default function Conversation(props: any) {
                 }
             >
                 <div className="pinned-photo">
-                    <img className="image-pinned" src={headshot}/>
+                    <img className="image-pinned" src={headshot} alt=""/>
                 </div>
                 <div className="pinned-name">
                     <div className="name">Jared Min</div>
@@ -38,7 +38,7 @@ export default function Conversation(props: any) {
                 }
             >
                 <div className="image-container">
-                    <img className="image" src={headshot}/>
+                    <img className="image" src={headshot} alt=""/>
                 </div>
                 <div 
                     className="conversation-content"

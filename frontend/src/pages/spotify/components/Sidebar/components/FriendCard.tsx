@@ -1,10 +1,10 @@
 import headshot from '../../../../../images/Headshot.jpg';
 
-export default function FriendCard(props: any) {
+export default function FriendCard() {
     return(
         <div className="friend-card">
             <div className="friend-card-photo">
-                <img className="image" src={headshot}/>
+                <img className="image" src={headshot} alt=""/>
             </div>
 
             <div className="friend-card-content">

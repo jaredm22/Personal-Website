@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import headshot from '../../../../images/Headshot.jpg';
-import MediaCard from "../MediaCard";
+// import MediaCard from "../MediaCard";
 
 function parseTime(time: number) {
     var minutes = Math.floor((time/1000)/60);
@@ -28,7 +28,7 @@ export default function ContentView(props: any) {
                 <div key={`list-item-${track.track.id}`} className="list-item" onClick={() => setSelectedSong(track.track.id)} style={selectedSong === track.track.id ? {background: "rgb(40, 40, 40)"} : {}}>
                     <p className="item-number">{index++}</p>
                     <div className="title">
-                        <img className="album-art" src={track.track.album.images[0].url}/>
+                        <img alt=""/>
                         <div className="title-info">
                             <h5>{track.track.name}</h5>
                             <h6>{track.track.artists[0].name}</h6>
@@ -46,13 +46,13 @@ export default function ContentView(props: any) {
     return(
         <div className={`content-view${props.type === "album" ? "-album" : "-playlist"}`}>
             <div className="content-header">
-                <img className="content-header-art" src={playlistInfo.images[0].url}/>
+                <img className="content-header-art" src={playlistInfo.images[0].url} alt=""/>
                 {/* <MediaCard mediaName={playlistInfo.name} artistName={"Jared"}/> */}
                 <div className="content-header-info">
                     <h6>PLAYLIST</h6>
                     <h1 style={{marginTop: "10px"}}>{playlistInfo.name}</h1>
                     <div style={{display: "flex", flexDirection: "row", marginTop: "1rem"}}>
-                        <img height="30px" src={headshot} style={{borderRadius: "25px"}}/>
+                        <img height="30px" src={headshot} style={{borderRadius: "25px"}} alt=""/>
                         <h6>Jared • {playlistInfo.tracks.total} Songs, 2 hr 18 min</h6>
                     </div>
                 </div>

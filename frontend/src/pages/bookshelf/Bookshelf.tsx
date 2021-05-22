@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './bookshelf.scss';
 import { Rnd } from 'react-rnd';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function Bookshelf(props: any) {
 
@@ -14,17 +14,17 @@ export default function Bookshelf(props: any) {
         height: "100%",
     });
 
-    function handleMinimize() {
-        setState(prevState => {
-            return { ...prevState, minimized: true };
-        });
-    }
+    // function handleMinimize() {
+    //     setState(prevState => {
+    //         return { ...prevState, minimized: true };
+    //     });
+    // }
 
-    function handleNavClick(navItem: string) {
-        setState(prevState => {
-            return { ...prevState, selectedNavItem: navItem };
-        });
-    }
+    // function handleNavClick(navItem: string) {
+    //     setState(prevState => {
+    //         return { ...prevState, selectedNavItem: navItem };
+    //     });
+    // }
 
     return(
         <Rnd

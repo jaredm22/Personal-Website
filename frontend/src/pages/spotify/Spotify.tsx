@@ -6,8 +6,8 @@ import MediaController from './components/MediaController';
 import { Rnd } from 'react-rnd';
 import axios from 'axios';
 
-var SpotifyWebApi = require('spotify-web-api-node');
-var spotifyApi = new SpotifyWebApi();
+// var SpotifyWebApi = require('spotify-web-api-node');
+// var spotifyApi = new SpotifyWebApi();
 
 export default function Spotify(props: any) {
 
