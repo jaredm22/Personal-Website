@@ -1,24 +1,4 @@
-
-/* @import './styles/global-vars.scss'; */
-
-$spotify-black: #191414;
-$spotify-white: #FFFFFF;
-$spotify-green: #1DB954;
-$spotify-dark-gray: rgb(18, 18, 18);
-$spotify-highlight-gray: rgb(40, 40, 40);
-$spotify-light-gray: rgb(179, 179, 179);
-$spotify-media-controller-gray: rgb(24, 24, 24);
-
-$apple-light-green: rgb(52, 199, 89);
-$apple-dark-green: rgb(48, 209, 88);
-$apple-light-red: rgb(255, 59, 49);
-$apple-dark-red: rgb(255, 69, 58);
-$apple-sunset-orange: rgb(255, 96, 92);
-$apple-pastel-orange: rgb(255, 189, 68);
-$apple-malachite: rgb(0, 202, 78);
-$apple-light-yellow: rgb(255, 204, 0);
-$apple-dark-yellow: rgb(255, 214, 10);
-$apple-border-gray: rgb(108, 105, 108);
+@import '../../global-vars.scss'; 
 
 :is(h1, h2, h3, h4, h5, h6) {
     margin: 0;

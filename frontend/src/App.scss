@@ -1,27 +1,5 @@
 
-/* @import './styles/global-vars.scss'; */
-
-$search-background: rgb(30,30,30);
-$header: rgb(30,30,30);
-$content-background: rgb(30,30,30);
-
-$message-gray: rgb(58, 58, 60);
-$message-blue: rgb(10, 132, 255);
-$button-red: rgb(255,82,79);
-$button-orange: rgb(255, 181, 58);
-$button-green:rgb(21,196,68);
-
-
-$apple-light-green: rgb(52, 199, 89);
-$apple-dark-green: rgb(48, 209, 88);
-$apple-light-red: rgb(255, 59, 49);
-$apple-dark-red: rgb(255, 69, 58);
-$apple-sunset-orange: rgb(255, 96, 92);
-$apple-pastel-orange: rgb(255, 189, 68);
-$apple-malachite: rgb(0, 202, 78);
-$apple-light-yellow: rgb(255, 204, 0);
-$apple-dark-yellow: rgb(255, 214, 10);
-$apple-border-gray: rgb(108, 105, 108);
+@import './global-vars.scss';
 
 .container {
   height: 100%;
