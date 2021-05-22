@@ -1,14 +1,12 @@
-import Sidebar from './components/Sidebar/Sidebar';
-import Transcript from './components/Transcript/Transcript';
+import React, { useEffect, useState } from 'react';
+import './bookshelf.scss';
 import { Rnd } from 'react-rnd';
-import './messenger.scss';
-import React, { useState } from 'react';
+import axios from 'axios';
 
-
-export default function Messenger(props: any) {
+export default function Bookshelf(props: any) {
 
     const [ state, setState ] = useState({
-        selected: 100,
+        dataLoaded: false,
         minimized: false,
         x: 0, 
         y: 0, 
@@ -16,30 +14,21 @@ export default function Messenger(props: any) {
         height: "100%",
     });
 
-    function handleSelect(selectedId: any) {
-        setState(prevState => {
-            return {
-                ...prevState,
-                selected: selectedId,
-            }
-        });
-    }
-
     function handleMinimize() {
         setState(prevState => {
-            return { 
-                ...prevState, 
-                minimized: true, 
-            };
+            return { ...prevState, minimized: true };
         });
     }
-  
 
-    console.log(state.selected);
+    function handleNavClick(navItem: string) {
+        setState(prevState => {
+            return { ...prevState, selectedNavItem: navItem };
+        });
+    }
 
     return(
         <Rnd
-            className="messenger-container"
+            className="bookshelf-container"
             size={{ width: state.width,  height: state.height }}
             position={{ x: state.x, y: state.y }}
             onDragStop={(e, d) => {
@@ -64,8 +53,13 @@ export default function Messenger(props: any) {
             }}
             style={{display: (state.minimized ? "none" : "grid")}}
         >
-                <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize}/>
-                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} />
-        </Rnd>              
-    )
+            <div className="bookshelf-sidebar">
+
+            </div>
+
+            <div className="bookshelf-main">
+                
+            </div>
+        </Rnd>
+    );
 }

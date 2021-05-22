@@ -95,6 +95,7 @@ $apple-border-gray: rgb(108, 105, 108);
   color: rgb(173, 173, 173);
   align-self: flex-end;
   font-size: 12px;
+  font-weight: 600;
   margin: 0px;
   margin-right: 1.5em;
   margin-bottom: 1em;
@@ -128,6 +129,7 @@ $apple-border-gray: rgb(108, 105, 108);
 
 
 .timestamp {
+  margin: 0.5rem 0;
   color: rgb(173, 173, 173);
   height: 40px;
   width: fit-content;
@@ -139,12 +141,14 @@ $apple-border-gray: rgb(108, 105, 108);
 
   h6 {
     font-size: 12px;
+    font-weight: 700;
     margin: none;
   }
 
   p {
     margin: none;
     margin-left: 5px;
+    font-weight: 500;
     font-size: 12px;
   }
 }
@@ -319,7 +323,7 @@ $apple-border-gray: rgb(108, 105, 108);
   justify-content: flex-start;
   align-items: left;
   text-overflow: ellipsis;
-  border-bottom: 1px solid rgb(145, 145, 148);
+  border-bottom: 1px solid $apple-border-gray;
 
 
   .content-top {
@@ -331,7 +335,7 @@ $apple-border-gray: rgb(108, 105, 108);
 
       p {
           margin-right: 10px;
-          color: rgb(145, 145, 148);
+          // color: rgb(145, 145, 148);
       }
   }
 

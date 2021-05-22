@@ -1,0 +1,45 @@
+$apple-light-green: rgb(52, 199, 89);
+$apple-dark-green: rgb(48, 209, 88);
+$apple-light-red: rgb(255, 59, 49);
+$apple-dark-red: rgb(255, 69, 58);
+$apple-sunset-orange: rgb(255, 96, 92);
+$apple-pastel-orange: rgb(255, 189, 68);
+$apple-malachite: rgb(0, 202, 78);
+$apple-light-yellow: rgb(255, 204, 0);
+$apple-dark-yellow: rgb(255, 214, 10);
+$apple-border-gray: rgb(108, 105, 108);
+
+:is(h1, h2, h3, h4, h5, h6) {
+    margin: 0;
+    padding: 0;
+}
+
+h6 { font-weight: 500; font-size: 10.5px; padding: 2px;}
+h6:hover { color: white; text-decoration: underline;}
+
+p { margin: 0; padding: 0; }
+
+.bookshelf-container {
+    position: absolute;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgb(104, 104, 107);
+    grid-template-columns: 260px auto; 
+    grid-template-areas: "sidebar main";
+    overflow: hidden;
+    background: blue;
+}
+
+.bookshelf-sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    width: 100%;
+    background: pink;
+}
+
+.bookshelf-main {
+    grid-area: main;
+    background: gray;
+}

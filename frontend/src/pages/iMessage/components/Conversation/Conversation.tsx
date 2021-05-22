@@ -27,9 +27,16 @@ export default function Conversation(props: any) {
             <div className="conversation"
                  onClick={handleClick} 
                  style={props.clicked ? 
-                    { background: "rgb(10,132,255)" } : 
-                    { background: "none" }
-            }>
+                    { 
+                        background: "rgb(10,132,255)",
+                        color: "white"
+                    } : 
+                    { 
+                        background: "none",
+                        color: "rgb(108, 105, 108)"
+                    }
+                }
+            >
                 <div className="image-container">
                     <img className="image" src={headshot}/>
                 </div>
@@ -39,8 +46,8 @@ export default function Conversation(props: any) {
                         { 
                             borderBottom: "none",
                             color: "white",
-                        } : 
-                        { }}
+                        } : {}
+                    }
                 >
                     <div className="content-top">
                         <h5>Jared Min</h5>
