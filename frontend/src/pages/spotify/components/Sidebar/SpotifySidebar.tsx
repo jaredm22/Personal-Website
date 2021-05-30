@@ -1,5 +1,5 @@
 import React from 'react';
-import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
+import WindowButtons from '../../../components/WindowButtons';
 import FriendCard from './components/FriendCard';
 import Playlists from './components/Playlists';
 
@@ -55,11 +55,10 @@ export default function Sidebar(props: any) {
     }
     console.log(props);
 
-
     return(
         props.side === "left" ?
             <div className="left-sidebar">
-                <div className="header">
+                <div className="header draggable">
                     <WindowButtons app={"spotify"} minimizeHandler={props.minimizeHandler} expandHandler={props.expandHandler}/>
                 </div>
 
@@ -70,7 +69,7 @@ export default function Sidebar(props: any) {
         : 
 
         <div className="right-sidebar">
-            <div className="header">
+            <div className="header draggable">
                 <h4>Friend Activity</h4>
             </div>
 

@@ -11,8 +11,8 @@ function App() {
 
   return (
     <div className="container">
-      <Spotify/>
       <Messenger/>
+      <Spotify/>
       <Dock/>
     </div>
   );

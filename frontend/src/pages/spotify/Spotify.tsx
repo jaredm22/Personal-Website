@@ -102,6 +102,7 @@ export default function Spotify(props: any) {
                     }
                 })
             }}
+            dragHandleClassName="draggable"
             style={{display: (state.minimized ? "none" : "grid")}}
         >
                 <Sidebar

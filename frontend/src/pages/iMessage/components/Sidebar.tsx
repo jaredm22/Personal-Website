@@ -1,6 +1,6 @@
-import Conversation from '../Conversation/Conversation';
+import Conversation from './Conversation';
 // import { useState, useEffect} from 'react';
-import WindowButtons from '../../../components/WindowButtons.tsx/WindowButtons';
+import WindowButtons from '../../components/WindowButtons';
 
 
 export default function Sidebar(props: any) {
@@ -9,13 +9,13 @@ export default function Sidebar(props: any) {
     // const [ mouseDown, setMouseDown ] = useState(false);
 
     const examples = [];
-    for (var i = 0; i < 20; i++) {
+    for (var i = 1; i < 15; i++) {
         examples.push(i);
     }
 
     return(
         <div className="sidebar">
-            <div className="sidebar-header">
+            <div className="sidebar-header draggable">
                 <div className="sidebar-header-top">
                     <WindowButtons minimizeHandler={props.minimizeHandler} expandHandler={props.expandHandler}/>
                 </div>
@@ -28,9 +28,9 @@ export default function Sidebar(props: any) {
             <div className="sidebar-content">
                 <div className="pinned-container">
                     <Conversation 
-                        key={`pinned-conversation-${100}`}
-                        clicked={selected === 100}
-                        conversationId={100}
+                        key={`pinned-conversation-${0}`}
+                        clicked={selected === 0}
+                        conversationId={0}
                         type="pinned"
                         onChildClick={props.onChildClick}
                     />

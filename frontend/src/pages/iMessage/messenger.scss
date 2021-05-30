@@ -13,7 +13,7 @@
 }
 
 .main {
-  grid-area: "main";
+  grid-area: main;
   background: rgb(30,30,30);
   border-top-right-radius: inherit;
   border-bottom-right-radius: inherit;
@@ -137,7 +137,7 @@
 }
 
 .sidebar {
-  grid-area: "sidebar";
+  grid-area: sidebar;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: 1px solid black;
@@ -152,11 +152,6 @@
   backdrop-filter: blur(10px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
 }
-
-
-
-
-
 
 .sidebar-header {
   grid-area: header;
@@ -209,8 +204,6 @@
   flex-direction: column;
   overflow-y: scroll;
   align-items: center;
-
-  
 }
 
 .pinned-container {

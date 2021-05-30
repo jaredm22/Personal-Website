@@ -1,5 +1,5 @@
 // import React from 'react';
-import headshot from '../../../../images/Headshot.jpg';
+import headshot from '../../../images/Headshot.jpg';
 
 export default function Conversation(props: any) {
 
