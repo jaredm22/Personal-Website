@@ -106,6 +106,8 @@ export default function Messenger(props: any) {
                         }
                     })
                 }}
+                minHeight="500px"
+                minWidth="500px"
                 dragHandleClassName="draggable"
                 style={{display: (state.minimized ? "none" : "grid")}}
             >

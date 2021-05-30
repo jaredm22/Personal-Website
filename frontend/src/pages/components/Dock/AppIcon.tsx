@@ -3,11 +3,7 @@ import spotify from '../../../images/spotify-icons-logos/icons/01_RGB/02_PNG/Spo
 import iMessage from '../../../images/imessage.png';
 
 export default function AppIcon(props: any) {
-
-    // function handleClick(event: any) {
-    //     props.onChildClick(props.app);
-    // }
-
+    
     var icon = "";
     if (props.app === "iMessage") {
         icon = iMessage;

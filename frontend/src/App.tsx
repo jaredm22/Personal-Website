@@ -2,6 +2,7 @@ import React from 'react';
 import Messenger from './pages/iMessage/Messenger';
 import Spotify from './pages/spotify/Spotify';
 import Dock from './pages/components/Dock/Dock';
+import BigSur from './images/bigsur.jpeg';
 import './App.scss';
 import * as dotenv from 'dotenv';
 
@@ -11,10 +12,13 @@ function App() {
 
   return (
     <div className="container">
-      <Messenger/>
-      <Spotify/>
+      <div className="app-container">
+        <Messenger/>
+        {/* <Spotify/> */}
+      </div>
       <Dock/>
     </div>
+    
   );
 }
 
