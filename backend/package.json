@@ -1,7 +1,10 @@
 {
   
-  "scripts": {   
-    "start": "node index.js"  
+  "scripts": {
+  
+    
+  "start": "node index.js"
+  
   },
   
   "dependencies": {
@@ -22,7 +25,10 @@
   "mongoose": "^5.12.10",
   
     
-  "netlify-lambda": "^2.0.7"
+  "netlify-lambda": "^2.0.7",
+  
+    
+  "spotify-web-api-node": "^5.0.2"
   
   }
 }
