@@ -23,6 +23,9 @@ $lightsaber-yellow: rgb(250, 245, 102);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: rotate(20deg);
+  transition: height 4000ms;
+  -webkit-transition: height linear;
 
   .lightsaber-beam {
     justify-self: center;

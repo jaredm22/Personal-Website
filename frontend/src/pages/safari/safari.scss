@@ -25,7 +25,11 @@
         background: $apple-dark-gray4;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-between;
+    }
+
+    .button-container {
+        margin: 0 1.5rem
     }
 
     .input {

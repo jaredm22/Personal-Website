@@ -37,14 +37,14 @@ export default function Safari(props: any) {
         });
     }
 
-    function handleTabClick(tab: string) {
-        setState(prevState => {
-            return { 
-                ...prevState, 
-                selectedTab: 0
-            };
-        });
-    }
+    // function handleTabClick(tab: string) {
+    //     setState(prevState => {
+    //         return { 
+    //             ...prevState, 
+    //             selectedTab: 0
+    //         };
+    //     });
+    // }
 
     function handleClick() {
         props.onChildClick("safari");

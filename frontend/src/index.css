@@ -4,7 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url("../src/images/bigsur.jpeg") no-repeat;
-  background-size: auto;
+  background-size: cover;
   overflow: hidden;
 }
 
