@@ -10,7 +10,7 @@ export default function Safari(props: any) {
 
     const [ state, setState ] = useState({
         selectedTab: 0,
-        width: "100%",
+        width: "94.5%",
         height: "100%",
         x: 0,
         y: 0,
@@ -89,14 +89,19 @@ export default function Safari(props: any) {
                     expandHandler={handleExpand}
                 />
                 <div className="safari-main">
-                    
+                    <div style={{width: "200px", }}>
+                        <h2>Thanks for stopping by! As you can see, this website is still a work in progress.</h2>
+                        <br></br>
+                        <h2>For now, please enjoy these css/html lightsabers I made.</h2>
+                    </div>
                     <Lightsaber color="red"/>
                     <Lightsaber color="orange"/>
                     <Lightsaber color="yellow"/>
                     <Lightsaber color="green"/> 
                     <Lightsaber color="blue"/>
                     <Lightsaber color="purple"/>    
-                    <Lightsaber color="black"/>                                  
+                    <Lightsaber color="black"/>
+                    <h1>May the force be with you.</h1>             
                 </div>
 
             </Rnd>

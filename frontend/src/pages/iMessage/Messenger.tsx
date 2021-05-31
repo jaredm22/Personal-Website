@@ -25,9 +25,9 @@ export default function Messenger(props: any) {
         minimized: props.minimized,
         expanded: true,
         x: 0, 
-        y: 50, 
-        width: "90%",
-        height: "90%",
+        y: 0, 
+        width: "94.5%",
+        height: "100%",
         transcripts: [],
     });
 
@@ -111,7 +111,7 @@ export default function Messenger(props: any) {
                 >
                     <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize} expandHandler={handleExpand} transcripts={state.transcripts}/>
                     <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts[state.selected]}/>
-                </Rnd> 
+                </Rnd>
             </div>
         :
             <div className="messenger-container"></div>           

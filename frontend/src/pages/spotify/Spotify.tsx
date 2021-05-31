@@ -20,10 +20,10 @@ export default function Spotify(props: any) {
         data: {},
         minimized: props.minimized,
         expanded: true,
-        x: 50, 
-        y: 20, 
-        width: "90%",
-        height: "90%",
+        x: 0, 
+        y: 0, 
+        width: "94.5%",
+        height: "100%",
     });
 
     function handleMinimize() {

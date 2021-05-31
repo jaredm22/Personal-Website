@@ -15,6 +15,8 @@ $lightsaber-purple: #7630bb;
 $lightsaber-red: rgb(254, 39, 39);
 $lightsaber-green: rgb(47,249,36);
 $lightsaber-yellow: rgb(250, 245, 102);
+$lightsaber-mint: #99fadc;
+
 
 .lightsaber {
   height: 350px;
@@ -53,6 +55,9 @@ $lightsaber-yellow: rgb(250, 245, 102);
     box-shadow: rgba($apple-pastel-orange, 0.80) 0px 0px 70px 20px;
   }
 
+  .mint {
+    box-shadow: rgba($lightsaber-mint, 0.80) 0px 0px 70px 20px;
+  }
 
   .yellow {
     box-shadow: rgba($lightsaber-yellow, 0.80) 0px 0px 70px 20px;
