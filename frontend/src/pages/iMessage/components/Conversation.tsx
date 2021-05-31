@@ -25,7 +25,9 @@ export default function Conversation(props: any) {
                 onClick={handleClick} 
             >
                 <div className="image-container">
-                    <img className="image" src={headshot} alt=""/>
+                    <div className="contact-photo">
+                        <h3>{props.initials}</h3>
+                    </div>
                 </div>
                 <div 
                     className={`conversation-content ${props.clicked ? "clicked" : ""}`}

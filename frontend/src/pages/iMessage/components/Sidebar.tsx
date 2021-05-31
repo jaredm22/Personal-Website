@@ -29,7 +29,7 @@ export default function Sidebar(props: any) {
                 {props.transcripts.map((i: any) => {
                     if (i.conversationId === 0) {
                         return(
-                            <div className="pinned-container">
+                            <div className="pinned-container" key="pinned">
                                 <Conversation 
                                         key={`pinned-conversation-0`}
                                         clicked={selected === 0}
@@ -45,6 +45,7 @@ export default function Sidebar(props: any) {
                                 key={`conversation-${i.conversationId}`} 
                                 name={i.name}
                                 description={i.description}
+                                initials={i.initials}
                                 clicked={selected === i.conversationId}
                                 conversationId={i.conversationId}
                                 onChildClick={props.onChildClick}

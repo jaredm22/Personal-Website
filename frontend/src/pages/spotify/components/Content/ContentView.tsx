@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import headshot from '../../../../images/Headshot.jpg';
 // import MediaCard from "../MediaCard";
+import axios from 'axios';
+import { parseISO, format } from 'date-fns';
 
 function parseTime(time: number) {
     var minutes = Math.floor((time/1000)/60);
@@ -10,47 +12,40 @@ function parseTime(time: number) {
 }
 
 export default function ContentView(props: any) {
-    var tracks = [];
-    console.log(props);
 
-    const [selectedSong, setSelectedSong] = useState(null);
-    console.log(selectedSong);
+    const [ state, setState ] = useState({
+        selectedSong: "",
+        playlistTracks: [],
+        dataLoaded: false,
+    });
 
+    useEffect(() => {
+        axios({
+            method: "post",
+            url: "http://personal-website-backend-jmin.herokuapp.com/playlist",
+            data: { id: props.selectedPlaylist },
+        })
+        .then((res) => {
+            setState((prevState) => {
+                return {
+                    ...prevState,
+                    playlistTracks: res.data,
+                    dataLoaded: true,
+                }
+            })
+        })
+        .catch((err) => console.log("An error occured", err));
+    });
 
-    if (props.selectedPlaylist !== "") {
-        // let playlistInfo = props.playlistInfo;
-
-        let index = 1;
-        
-        tracks = props.playlistTracks.tracks.map((track: any) => {
-
-            return(
-                <div key={`list-item-${track.track.id}`} className="list-item" onClick={() => setSelectedSong(track.track.id)} style={selectedSong === track.track.id ? {background: "rgb(40, 40, 40)"} : {}}>
-                    <p className="item-number">{index++}</p>
-                    <div className="title">
-                        <img alt=""/>
-                        <div className="title-info">
-                            <h5>{track.track.name}</h5>
-                            <h6>{track.track.artists[0].name}</h6>
-                        </div>
-                    </div>
-                    <h6 className="album-name">{track.track.album.name}</h6>
-                    <h6 className="added-date">Oct 27, 2020</h6>
-                    <h6 className="time">{`${parseTime(track.track.duration_ms)}`}</h6>
-                </div>
-            )
-        });
-    }
-    
     let playlistInfo = props.playlistInfo;
     return(
         <div className={`content-view${props.type === "album" ? "-album" : "-playlist"}`}>
             <div className="content-header">
                 <img className="content-header-art" src={playlistInfo.images[0].url} alt=""/>
-                {/* <MediaCard mediaName={playlistInfo.name} artistName={"Jared"}/> */}
                 <div className="content-header-info">
                     <h6>PLAYLIST</h6>
                     <h1 style={{marginTop: "10px"}}>{playlistInfo.name}</h1>
+                    {/* {playlistInfo.description !== ""? <h6>{playlistInfo.description}</h6> : false} */}
                     <div style={{display: "flex", flexDirection: "row", marginTop: "1rem"}}>
                         <img height="30px" src={headshot} style={{borderRadius: "25px"}} alt=""/>
                         <h6>Jared • {playlistInfo.tracks.total} Songs, 2 hr 18 min</h6>
@@ -60,7 +55,7 @@ export default function ContentView(props: any) {
 
             <div className="content-body">
                 <div className="body-control-header">
-
+                    {/* <div className="play-button"></div> */}
                 </div>
 
                 <div className="content-body-list">
@@ -71,7 +66,38 @@ export default function ContentView(props: any) {
                         <h6 className="added-date">DATE ADDED</h6>
                         <h6 className="time">Time</h6>
                     </div>
-                        {tracks}
+                    {state.playlistTracks !== [] ?
+                        state.playlistTracks.map((track: any, i: number) => {
+                            return(
+                                <div 
+                                    key={`list-item-${track.track.id}`} 
+                                    className={`list-item ${state.selectedSong === track.track.id ? "selected" : "" }`} 
+                                    onClick={() =>
+                                        setState(prevState => {
+                                            return {
+                                                ...prevState,
+                                                selectedSong: track.track.id, 
+                                            }
+                                        })
+                                    }
+                                >
+                                    <p className="item-number">{i+1}</p>
+                                    <div className="title">
+                                        <img height="50px" src={track.track.album.images[0].url} alt=""/>
+                                        <div className="title-info">
+                                            <h5>{track.track.name}</h5>
+                                            <h6>{track.track.artists[0].name}</h6>
+                                        </div>
+                                    </div>
+                                    <h6 className="album-name">{track.track.album.name}</h6>
+                                    <h6 className="added-date">{format(parseISO(track.added_at), "MMM d, yyyy")}</h6>
+                                    <h6 className="time">{`${parseTime(track.track.duration_ms)}`}</h6>
+                                </div>
+                            );
+                        })
+                    : 
+                        <div></div>
+                    }
                 </div>
             </div>
         </div>

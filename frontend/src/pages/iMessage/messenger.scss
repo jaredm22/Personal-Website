@@ -124,12 +124,23 @@
   background: white;
 }
 
-.image {
+.image, .contact-photo {
   height: 40px;
   width: 40px;
   border-radius: 50px;
   background: white;
   margin-right: 5px;
+}
+
+.contact-photo { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightskyblue;
+
+  h3 {
+    color: white;
+  }
 }
 
 

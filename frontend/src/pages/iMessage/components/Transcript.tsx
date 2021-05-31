@@ -28,7 +28,6 @@ export default function Transcript(props: any) {
         if (transcript.lastSentMessageIndex === i)  messages.push(<p className="delivered">Delivered</p>);
     }
 
-    console.log(state);
     return(
         <div className="main">
 

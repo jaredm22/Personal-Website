@@ -4,7 +4,7 @@ export default function Main(props: any) {
     return (
         <div className="spotify-main">
             <div className="main-nav draggable">
-
+                
             </div>
             <ContentView {...props}/>
         </div>

@@ -2,7 +2,7 @@ import Sidebar from './components/Sidebar';
 import Transcript from './components/Transcript';
 import { Rnd } from 'react-rnd';
 import './messenger.scss';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 interface state {
@@ -32,7 +32,7 @@ export default function Messenger(props: any) {
     });
 
     useEffect(() => {
-        axios.get("https://personal-website-backend-jmin.herokuapp.com/conversations/")
+        axios.get(`https://personal-website-backend-jmin.herokuapp.com/conversations/`)
           .then(res => {
             setState((prevState: state) => {
                 return { 
@@ -75,8 +75,6 @@ export default function Messenger(props: any) {
     function handleClick() {
         props.onChildClick("iMessage");
     }
-
-    console.log(state.minimized);
     
     return(
         state.dataLoaded ?

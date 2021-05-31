@@ -9,16 +9,16 @@ export default function Playlists(props: any) {
         e.preventDefault();
         props.onChildClick(playlistId); // pass any argument to the callback
     }
-    console.log(props);
 
     return(
         <div className="playlists"> 
             
             {props.playlists !== null ?
             
-            props.playlists.map((p: any) => {
+            props.playlists.map((p: any, i: number) => {
                 return(
                     <div 
+                        key={`playlist-${i}`}
                         className="playlist" 
                         onClick={(e) => handlePlaylistClick(e, p.id)} 
                         style={props.selectedPlaylist===p.id ? {color: "white"} : {}}

@@ -1,14 +1,14 @@
 
 export default function WindowButtons(props: any) {
-    console.log(props);
 
-    function handleClick(event: any) {
+    function handleClick() {
         props.minimizeHandler();
     }
 
     function handleExpand() {
         props.expandHandler();
     }
+
     return(
         <div className="button-container">
             <div className="button close" onClick={handleClick}></div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import Messenger from './pages/iMessage/Messenger';
-import Spotify from './pages/spotify/Spotify';
+import Spotify from './pages/Spotify/Spotify';
 import Dock from './pages/components/Dock/Dock';
-import Safari from './pages/safari/Safari';
+import Safari from './pages/Safari/Safari';
 import { Rnd } from 'react-rnd';
 import './App.scss';
 import Lightsaber from './pages/components/Lightsaber';
@@ -38,7 +38,6 @@ function App() {
     }
   }
 
-  console.log(state);
   return (
     <div className="container">
       <Dock onChildClick={handleAppClick}/>    
@@ -48,8 +47,6 @@ function App() {
       <Rnd className="lightsaber-draggable">
         <Lightsaber color="mint"/>  
       </Rnd>
-
-      
     </div>
     
   );

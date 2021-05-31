@@ -53,7 +53,6 @@ export default function Sidebar(props: any) {
     for (var i = 0; i < 60; i++) {
         examples.push(i);
     }
-    console.log(props);
 
     return(
         props.side === "left" ?

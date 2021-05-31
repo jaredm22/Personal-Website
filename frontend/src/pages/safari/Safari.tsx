@@ -49,8 +49,6 @@ export default function Safari(props: any) {
     function handleClick() {
         props.onChildClick("safari");
     }
-
-    console.log(state);
     
     return(
         <div onClick={handleClick} style={{height: "100%", width: "100%"}}>
@@ -59,7 +57,6 @@ export default function Safari(props: any) {
                 size={{ width: state.width,  height: state.height }}
                 position={{ x: state.x, y: state.y }}
                 onDragStop={(e, d) => {
-                    console.log(d);
                     setState( prevState => {
                         return {
                             ...prevState,

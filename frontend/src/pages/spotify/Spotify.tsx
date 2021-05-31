@@ -1,13 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './spotify.scss';
 import Sidebar from './components/Sidebar/SpotifySidebar';
 import Main from './components/SpotifyMain';
 import MediaController from './components/MediaController';
 import { Rnd } from 'react-rnd';
-// import axios from 'axios';
-
-// var SpotifyWebApi = require('spotify-web-api-node');
-// var spotifyApi = new SpotifyWebApi();
+import axios from 'axios';
 
 export default function Spotify(props: any) {
 
@@ -17,7 +14,6 @@ export default function Spotify(props: any) {
         selectedPlaylistId: "",
         playlistInfo: [],
         playlistTracks: [],
-        data: {},
         minimized: props.minimized,
         expanded: true,
         x: 0, 
@@ -60,33 +56,31 @@ export default function Spotify(props: any) {
     function handleClick() {
         props.onChildClick("spotify");
     }
-    // useEffect(() => {
 
-    //     axios.get("http://localhost:8000/getAccessToken").then((res) => console.log(res));
-    //     axios.get("http://localhost:8000/getPlaylists").then((res) => {
-    //         setState( prevState => {
-    //             return {
-    //                 ...prevState,
-    //                 playlistInfo: res.data.playlistInfo,
-    //                 playlistTracks: res.data.playlistTracks,
-    //             }
-    //         })
-    //     });
-    // }, []);
+    useEffect(() => {
+        axios.get("http://personal-website-backend-jmin.herokuapp.com/spotify")
+            .then((res) => {
+                setState(prevState => {
+                    return {
+                        ...prevState,
+                        dataLoaded: true,
+                        playlistInfo: res.data,
+                        selectedPlaylistId: res.data[0].id,
+                    }
+                })
+            })
+            .catch((err) => console.log("An error occured", err));
+      }, [state.dataLoaded]);
     
-    // // TO-DO : Make a fake login page to intially render while data is grabbed
-
     console.log(state);
-    // console.log(state.playlistInfo);
-    // console.log(state.playlistTracks);
     return(
         <div onClick={handleClick}>
             <Rnd
+                key={`spotify${state.dataLoaded ? "-data-loaded" : ""}`}
                 className="spotify-container"
                 size={{ width: state.width,  height: state.height }}
                 position={{ x: state.x, y: state.y }}
                 onDragStop={(e, d) => {
-                    console.log(d);
                     setState( prevState => {
                         return {
                             ...prevState,
@@ -126,10 +120,8 @@ export default function Spotify(props: any) {
                 {state.selectedPlaylistId !== "" && state.playlistInfo !== null ?
                     <Main 
                         key={`main${"-" + state.selectedPlaylistId}`} 
-                        data={state.data} 
                         selectedPlaylist={state.selectedPlaylistId} 
                         playlistInfo={state.playlistInfo.find((p: any) => p.id === state.selectedPlaylistId)} 
-                        playlistTracks={state.playlistTracks.find((p: any) => p.id === state.selectedPlaylistId)}
                     />
                     :
                     <div className="spotify-main">
