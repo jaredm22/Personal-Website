@@ -4,7 +4,7 @@ import iMessage from '../../../images/imessage.png';
 
 export default function AppIcon(props: any) {
     
-    var icon = "";
+    var icon = spotify;
     if (props.app === "iMessage") {
         icon = iMessage;
     } else if (props.app === "spotify") {

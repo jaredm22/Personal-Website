@@ -1,24 +1,31 @@
 import { useState } from 'react';
 import Message from './Message';
 
-
 export default function Transcript(props: any) {
 
     const [ state, setState ] = useState({
         input: "",
+        userMessages: [],
         messages: props.selectedTranscript.messages,
     })
 
-    function createMessage(b: any) {
-        
+    function createMessage(b: boolean) {
+        if (b) {   
+            setState(prevState => {
+                return {
+                    ...prevState,
+                    messages: [...prevState.userMessages, []]
+                }
+           }) 
+        } 
     }
 
     const transcript = props.selectedTranscript;
 
     var messages = []
     for (var i = 0; i < transcript.numMessages; i++) {
-        console.log(transcript.messages[i]);
         messages.push(<Message key={i} type={state.messages[i].sent ? "sent" : "received"} text={state.messages[i].message}/>)
+        if (transcript.lastSentMessageIndex === i)  messages.push(<p className="delivered">Delivered</p>);
     }
 
     console.log(state);
@@ -35,7 +42,6 @@ export default function Transcript(props: any) {
                     <p>8:35 PM</p>
                 </div>
                 {messages}
-                {transcript.lastSentMessageIndex !== -1 ? <p className="delivered">Delivered</p> : false }
             </div>
 
             <div className="main-footer">

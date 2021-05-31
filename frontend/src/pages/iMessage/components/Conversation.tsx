@@ -31,10 +31,10 @@ export default function Conversation(props: any) {
                     className={`conversation-content ${props.clicked ? "clicked" : ""}`}
                 >
                     <div className="content-top">
-                        <h5>Jared Min</h5>
+                        <h5>{props.name}</h5>
                         <p>Yesterday</p>
                     </div>
-                    <p>Oh he's just sitting there. That's a beeeeeeeeg yoshi.</p>
+                    <p>{props.description}</p>
                 </div>
             </div>
     )

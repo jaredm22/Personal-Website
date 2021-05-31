@@ -24,15 +24,15 @@ export default function Messenger(props: any) {
         selected: 0,
         minimized: false,
         expanded: true,
-        x: 0, 
-        y: 0, 
-        width: "100vw",
-        height: "100vh",
+        x: 100, 
+        y: 50, 
+        width: "90%",
+        height: "90%",
         transcripts: [],
     });
 
     useEffect(() => {
-        axios.get("http://localhost:5000/conversations/")
+        axios.get("http://personal-website-backend-jmin.herokuapp.com/conversations/")
           .then(res => {
             setState((prevState: state) => {
                 return { 
@@ -69,7 +69,7 @@ export default function Messenger(props: any) {
                 expanded: true, 
                 width: "100%",
                 height: "100%",
-                x: 0,
+                x: 80,
                 y: 0,
             };
         });
@@ -86,8 +86,7 @@ export default function Messenger(props: any) {
                 size={{ width: state.width,  height: state.height }}
                 position={{ x: state.x, y: state.y }}
                 onDragStop={(e, d) => {
-                    console.log(d);
-                    setState( prevState => {
+                    setState( prevState => {    
                         return {
                             ...prevState,
                             x: d.x,
@@ -95,21 +94,20 @@ export default function Messenger(props: any) {
                         }
                     })
                 }}
-                onResizeStop={(e, direction, ref, delta, position) => {
-                    setState( prevState => {
-                        return {
-                            ...prevState,
-                            width: ref.style.width,
-                            height: ref.style.height,
-                            expanded: false, 
-                            ...position,
-                        }
-                    })
-                }}
-                minHeight="500px"
-                minWidth="500px"
+                // onResizeStop={(e, direction, ref, delta, position) => {
+                //     setState( prevState => {
+                //         return {
+                //             ...prevState,
+                //             width: ref.style.width,
+                //             height: ref.style.height,
+                //             expanded: false, 
+                //             ...position,
+                //         }
+                //     })
+                // }}
+                enableResizing={false}
                 dragHandleClassName="draggable"
-                style={{display: (state.minimized ? "none" : "grid")}}
+                style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
             >
                 <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize} expandHandler={handleExpand} transcripts={state.transcripts}/>
                 <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts[state.selected]}/>

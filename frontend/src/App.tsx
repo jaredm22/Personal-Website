@@ -9,14 +9,17 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 function App() {
+  const [topApp, setTopApp] = React.useState("messenger");
+  
+  function handleAppClick(app: string) {
+    setTopApp(app)
+  }
 
   return (
     <div className="container">
-      <div className="app-container">
-        <Messenger/>
-        {/* <Spotify/> */}
-      </div>
       <Dock/>
+      <Messenger topApp={topApp === "messenger"} onChildClick={handleAppClick}/>
+      <Spotify topApp={topApp === "spotify"} onChildClick={handleAppClick}/>
     </div>
     
   );

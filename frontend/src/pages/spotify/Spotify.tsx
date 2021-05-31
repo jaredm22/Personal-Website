@@ -18,7 +18,7 @@ export default function Spotify(props: any) {
         playlistInfo: [],
         playlistTracks: [],
         data: {},
-        minimized: false,
+        minimized: true,
         expanded: true,
         x: 0, 
         y: 0, 
@@ -102,8 +102,10 @@ export default function Spotify(props: any) {
                     }
                 })
             }}
+            minHeight="500px"
+            minWidth="500px"
             dragHandleClassName="draggable"
-            style={{display: (state.minimized ? "none" : "grid")}}
+            style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
         >
                 <Sidebar
                     key={`sidebar-left`}
