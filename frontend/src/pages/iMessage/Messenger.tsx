@@ -32,7 +32,7 @@ export default function Messenger(props: any) {
     });
 
     useEffect(() => {
-        axios.get("http://personal-website-backend-jmin.herokuapp.com/conversations/")
+        axios.get("https://personal-website-backend-jmin.herokuapp.com/conversations/")
           .then(res => {
             setState((prevState: state) => {
                 return { 
