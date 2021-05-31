@@ -30,7 +30,6 @@ const conversationRoutes = require('./src/controllers/conversation.controller')
 app.use('/conversations', conversationRoutes);
 
 
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{
     console.log(`Successfully served on port: ${PORT}.`);
