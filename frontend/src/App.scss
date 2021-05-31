@@ -8,6 +8,99 @@
   display: flex;
 }
 
+
+
+$lightsaber-blue: #1585fd;
+$lightsaber-purple: #7630bb;
+$lightsaber-red: rgb(254, 39, 39);
+$lightsaber-green: rgb(47,249,36);
+$lightsaber-yellow: rgb(250, 245, 102);
+
+.lightsaber {
+  height: 350px;
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .lightsaber-beam {
+    justify-self: center;
+    align-self: center;
+    height: 250px;
+    width: 10px;
+    border-radius: 10px 10px 0 0;
+    background: white;
+    border: 1px solid whitesmoke;
+  }
+
+  .blue {
+    box-shadow: rgba($lightsaber-blue, 0.80) 0px 0px 70px 20px;
+  }
+
+  .green {
+    box-shadow: rgba($lightsaber-green, 0.80) 0px 0px 70px 20px;
+  }
+
+  .red {
+    box-shadow: rgba($lightsaber-red, 0.80) 0px 0px 70px 20px;
+  }
+
+  .orange {
+    box-shadow: rgba($apple-pastel-orange, 0.80) 0px 0px 70px 20px;
+  }
+
+
+  .yellow {
+    box-shadow: rgba($lightsaber-yellow, 0.80) 0px 0px 70px 20px;
+  }
+  .purple {
+    box-shadow: rgba($lightsaber-purple, 0.80) 0px 0px 70px 20px;
+  }
+
+  .black {
+    box-shadow: rgba(black, 0.80) 0px 0px 70px 20px;
+
+  }
+  
+  .lightsaber-hilt {
+    height: 100px;
+    width: 15px;
+    display: flex;
+    background: rgb(220, 220, 220);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .hilt-top {
+      height: 60px;
+      width: 20px;
+    }
+
+    
+    .hilt-bottom {
+      height: 40px;
+      width: 20px;
+      background: rgb(220, 220, 220);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .col {
+        width: 5px;
+        height: 40px;
+        background: black;
+      }
+    }
+
+
+  }
+}
+
+
+
+
+
 .dock-container {
   height: 100vh;
   left: 0;

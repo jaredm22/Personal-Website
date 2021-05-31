@@ -15,7 +15,7 @@ p { margin: 0; padding: 0; }
     display: grid;
     height: 100%;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid $apple-dark-gray1;
     grid-template-columns: 260px auto 260px; 
     grid-template-rows: calc(100vh - 90px) 90px;

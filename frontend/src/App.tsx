@@ -2,6 +2,7 @@ import React from 'react';
 import Messenger from './pages/iMessage/Messenger';
 import Spotify from './pages/spotify/Spotify';
 import Dock from './pages/components/Dock/Dock';
+import Safari from './pages/safari/Safari';
 import './App.scss';
 import * as dotenv from 'dotenv';
 
@@ -11,7 +12,7 @@ function App() {
   const [state, setState] = React.useState({
     topApp: "iMessage",
     iMessageMinimized: false, 
-    spotifyMinimized: true,
+    spotifyMinimized: false,
   })
 
 
@@ -38,9 +39,10 @@ function App() {
   console.log(state);
   return (
     <div className="container">
-      <Dock onChildClick={handleAppClick}/>
+      <Dock onChildClick={handleAppClick}/>    
       <Messenger key={`messenger${state.iMessageMinimized ? "minimized" : ""}`} topApp={state.topApp === "iMessage"} onChildClick={handleAppClick} minimized={state.iMessageMinimized}/>
       <Spotify topApp={state.topApp === "spotify"} onChildClick={handleAppClick} minimized={state.spotifyMinimized}/>
+      <Safari onChildClick={handleAppClick}/>
     </div>
     
   );
