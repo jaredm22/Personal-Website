@@ -18,12 +18,12 @@ export default function Spotify(props: any) {
         playlistInfo: [],
         playlistTracks: [],
         data: {},
-        minimized: true,
+        minimized: props.minimized,
         expanded: true,
-        x: 0, 
-        y: 0, 
-        width: "100%",
-        height: "100%",
+        x: 50, 
+        y: 20, 
+        width: "90%",
+        height: "90%",
     });
 
     function handleMinimize() {
@@ -57,6 +57,9 @@ export default function Spotify(props: any) {
         });
     }
 
+    function handleClick() {
+        props.onChildClick("spotify");
+    }
     // useEffect(() => {
 
     //     axios.get("http://localhost:8000/getAccessToken").then((res) => console.log(res));
@@ -73,40 +76,41 @@ export default function Spotify(props: any) {
     
     // // TO-DO : Make a fake login page to intially render while data is grabbed
 
-    // console.log(state.data);
+    console.log(state);
     // console.log(state.playlistInfo);
     // console.log(state.playlistTracks);
     return(
-        <Rnd
-            className="spotify-container"
-            size={{ width: state.width,  height: state.height }}
-            position={{ x: state.x, y: state.y }}
-            onDragStop={(e, d) => {
-                console.log(d);
-                setState( prevState => {
-                    return {
-                        ...prevState,
-                        x: d.x,
-                        y: d.y,
-                    }
-                })
-            }}
-            onResizeStop={(e, direction, ref, delta, position) => {
-                setState( prevState => {
-                    return {
-                        ...prevState,
-                        width: ref.style.width,
-                        height: ref.style.height,
-                        expanded: false, 
-                        ...position,
-                    }
-                })
-            }}
-            minHeight="500px"
-            minWidth="500px"
-            dragHandleClassName="draggable"
-            style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
-        >
+        <div onClick={handleClick}>
+            <Rnd
+                className="spotify-container"
+                size={{ width: state.width,  height: state.height }}
+                position={{ x: state.x, y: state.y }}
+                onDragStop={(e, d) => {
+                    console.log(d);
+                    setState( prevState => {
+                        return {
+                            ...prevState,
+                            x: d.x,
+                            y: d.y,
+                        }
+                    })
+                }}
+                onResizeStop={(e, direction, ref, delta, position) => {
+                    setState( prevState => {
+                        return {
+                            ...prevState,
+                            width: ref.style.width,
+                            height: ref.style.height,
+                            expanded: false, 
+                            ...position,
+                        }
+                    })
+                }}
+                minHeight="500px"
+                minWidth="500px"
+                dragHandleClassName="draggable"
+                style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+            >
                 <Sidebar
                     key={`sidebar-left`}
                     selectedNavItem={state.selectedNavItem}
@@ -135,5 +139,6 @@ export default function Spotify(props: any) {
                 <Sidebar key={"sidebar-right"} side="right"/>
                 <MediaController/>
             </Rnd>
+        </div>
     );
 }

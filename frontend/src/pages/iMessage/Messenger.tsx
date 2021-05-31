@@ -22,9 +22,9 @@ export default function Messenger(props: any) {
     const [ state, setState ] = useState<state>({
         dataLoaded: false,
         selected: 0,
-        minimized: false,
+        minimized: props.minimized,
         expanded: true,
-        x: 100, 
+        x: 0, 
         y: 50, 
         width: "90%",
         height: "90%",
@@ -52,13 +52,10 @@ export default function Messenger(props: any) {
             }
         });
     }
-
+    
     function handleMinimize() {
         setState(prevState => {
-            return { 
-                ...prevState, 
-                minimized: true, 
-            };
+            return { ...prevState, minimized: true };
         });
     }
   
@@ -75,43 +72,47 @@ export default function Messenger(props: any) {
         });
     }
 
-    console.log(state.selected);
-    console.log(state);
+    function handleClick() {
+        props.onChildClick("iMessage");
+    }
 
+    console.log(state.minimized);
     
     return(
         state.dataLoaded ?
-            <Rnd
-                className="messenger-container"
-                size={{ width: state.width,  height: state.height }}
-                position={{ x: state.x, y: state.y }}
-                onDragStop={(e, d) => {
-                    setState( prevState => {    
-                        return {
-                            ...prevState,
-                            x: d.x,
-                            y: d.y,
-                        }
-                    })
-                }}
-                // onResizeStop={(e, direction, ref, delta, position) => {
-                //     setState( prevState => {
-                //         return {
-                //             ...prevState,
-                //             width: ref.style.width,
-                //             height: ref.style.height,
-                //             expanded: false, 
-                //             ...position,
-                //         }
-                //     })
-                // }}
-                enableResizing={false}
-                dragHandleClassName="draggable"
-                style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
-            >
-                <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize} expandHandler={handleExpand} transcripts={state.transcripts}/>
-                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts[state.selected]}/>
-            </Rnd> 
+            <div onClick={handleClick}>
+                <Rnd
+                    className="messenger-container"
+                    size={{ width: state.width,  height: state.height }}
+                    position={{ x: state.x, y: state.y }}
+                    onDragStop={(e, d) => {
+                        setState( prevState => {    
+                            return {
+                                ...prevState,
+                                x: d.x,
+                                y: d.y,
+                            }
+                        })
+                    }}
+                    // onResizeStop={(e, direction, ref, delta, position) => {
+                    //     setState( prevState => {
+                    //         return {
+                    //             ...prevState,
+                    //             width: ref.style.width,
+                    //             height: ref.style.height,
+                    //             expanded: false, 
+                    //             ...position,
+                    //         }
+                    //     })
+                    // }}
+                    enableResizing={false}
+                    dragHandleClassName="draggable"
+                    style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+                >
+                    <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize} expandHandler={handleExpand} transcripts={state.transcripts}/>
+                    <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts[state.selected]}/>
+                </Rnd> 
+            </div>
         :
             <div className="messenger-container"></div>           
     )

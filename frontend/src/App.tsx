@@ -8,17 +8,39 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 function App() {
-  const [topApp, setTopApp] = React.useState("messenger");
-  
+  const [state, setState] = React.useState({
+    topApp: "iMessage",
+    iMessageMinimized: false, 
+    spotifyMinimized: true,
+  })
+
+
   function handleAppClick(app: string) {
-    setTopApp(app)
+    if (app === "spotify") {
+      setState(prevState => {
+        return { 
+          ...prevState, 
+          topApp: app,
+          spotifyMinimized: false,
+        };
+      });
+    } else  {
+      setState(prevState => {
+        return { 
+          ...prevState, 
+          topApp: app,
+          iMessageMinimized: false,
+        };
+      });
+    }
   }
 
+  console.log(state);
   return (
     <div className="container">
-      <Dock/>
-      <Messenger topApp={topApp === "messenger"} onChildClick={handleAppClick}/>
-      <Spotify topApp={topApp === "spotify"} onChildClick={handleAppClick}/>
+      <Dock onChildClick={handleAppClick}/>
+      <Messenger key={`messenger${state.iMessageMinimized ? "minimized" : ""}`} topApp={state.topApp === "iMessage"} onChildClick={handleAppClick} minimized={state.iMessageMinimized}/>
+      <Spotify topApp={state.topApp === "spotify"} onChildClick={handleAppClick} minimized={state.spotifyMinimized}/>
     </div>
     
   );
