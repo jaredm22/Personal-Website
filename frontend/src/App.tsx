@@ -2,7 +2,7 @@ import React from 'react';
 import Messenger from './pages/iMessage/Messenger';
 import Spotify from './pages/spotify/Spotify';
 import Dock from './pages/components/Dock/Dock';
-import Safari from './pages/Safari/Safari';
+import Safari from './pages/safari/Safari';
 import { Rnd } from 'react-rnd';
 import './App.scss';
 import Lightsaber from './pages/components/Lightsaber';
