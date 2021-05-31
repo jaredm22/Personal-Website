@@ -100,6 +100,7 @@ export default function Spotify(props: any) {
                         }
                     })
                 }}
+                
                 minHeight="500px"
                 minWidth="500px"
                 dragHandleClassName="draggable"
