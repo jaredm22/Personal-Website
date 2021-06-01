@@ -72,7 +72,6 @@ export default function Spotify(props: any) {
             .catch((err) => console.log("An error occured", err));
       }, [state.dataLoaded]);
     
-    console.log(state);
     return(
         <div onClick={handleClick}>
             <Rnd

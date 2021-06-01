@@ -5,6 +5,12 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 const express = require('express')
 
+const app = express()
+const cors = require('cors')
+
+app.use(cors());
+app.use(express.json());
+
 var clientId = CLIENT_ID;
 var clientSecret = CLIENT_SECRET;
 
@@ -24,12 +30,6 @@ spotifyApi.clientCredentialsGrant().then(
     console.log('Something went wrong when retrieving an access token', err);
   }
 );
-
-const app = express()
-const cors = require('cors')
-
-app.use(cors());
-app.use(express.json())
 
 const mongoose = require("mongoose"); // new
 const source = process.env.ATLAS_CONNECTION;
