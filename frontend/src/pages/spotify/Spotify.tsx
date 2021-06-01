@@ -70,13 +70,12 @@ export default function Spotify(props: any) {
                 size={{ width: state.width,  height: state.height }}
                 position={{ x: state.x, y: state.y }}
                 onDragStop={(e, d) => {
-                    setState((prevState) => {
-                        return {
-                            ...prevState,
-                            x: d.x,
-                            y: d.y,
-                        }
+                    setState({
+                        ...state,
+                        x: d.x,
+                        y: d.y,
                     })
+                    e.preventDefault()
                 }}
                 onResizeStop={(e, direction, ref, delta, position) => {
                     setState({
@@ -85,12 +84,11 @@ export default function Spotify(props: any) {
                         height: ref.style.height,
                         expanded: false, 
                         ...position,
-                        
                     })
                 }}
                 onClick={handleClick}
                 minHeight="500px"
-                minWidth="500px"
+                minWidth="1100px"
                 dragHandleClassName="draggable"
                 style={{display: (props.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
             >

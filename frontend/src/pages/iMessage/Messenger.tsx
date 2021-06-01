@@ -88,7 +88,8 @@ export default function Messenger(props: any) {
                         ...position,
                     })
                 }}
-                // enableResizing={false}
+                minWidth="640px"
+                minHeight="650px"
                 dragHandleClassName="draggable"
                 style={{display: (props.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1), height: state.height }}
                 onClick={handleClick}
