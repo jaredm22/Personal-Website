@@ -14,17 +14,12 @@ export default function Spotify(props: any) {
         selectedPlaylistId: "",
         playlistInfo: [],
         playlistTracks: [],
-        minimized: props.minimized,
         expanded: true,
-        x: 60, 
-        y: 10, 
+        x: 100, 
+        y: 5, 
         width: "85%",
         height: "90%",
     });
-
-    function handleMinimize() {
-        setState((prevState) => {return {...prevState, minimized: true }})
-    }
 
     function handleExpand() {
         setState(prevState => {
@@ -52,7 +47,8 @@ export default function Spotify(props: any) {
     }
 
     useEffect(() => {
-        axios.get("https://personal-website-backend-jmin.herokuapp.com/spotify")
+        if (!state.dataLoaded) {
+            axios.get("https://personal-website-backend-jmin.herokuapp.com/spotify")
             .then((res) => {
                 setState((prevState) => {
                     return {
@@ -64,10 +60,10 @@ export default function Spotify(props: any) {
                 })
             })
             .catch((err) => console.log("An error occured", err));
-      }, [state.dataLoaded]);
+        }
+      }, [state]);
     
     return(
-        <div onClick={handleClick}>
             <Rnd
                 key={`spotify${state.dataLoaded ? "-data-loaded" : ""}`}
                 className="spotify-container"
@@ -83,21 +79,20 @@ export default function Spotify(props: any) {
                     })
                 }}
                 onResizeStop={(e, direction, ref, delta, position) => {
-                    setState((prevState) => {
-                        return {
-                            ...prevState,
-                            width: ref.style.width,
-                            height: ref.style.height,
-                            expanded: false, 
-                            ...position,
-                        }
+                    setState({
+                        ...state,
+                        width: ref.style.width,
+                        height: ref.style.height,
+                        expanded: false, 
+                        ...position,
+                        
                     })
                 }}
-
+                onClick={handleClick}
                 minHeight="500px"
                 minWidth="500px"
                 dragHandleClassName="draggable"
-                style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+                style={{display: (props.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
             >
                 <Sidebar
                     key={`sidebar-left`}
@@ -108,7 +103,7 @@ export default function Spotify(props: any) {
                     playlists={state.playlistInfo}
                     side="left" 
                     dataLoaded={state.dataLoaded}
-                    minimizeHandler={handleMinimize}
+                    minimizeHandler={props.minimizeHandler}
                     expandHandler={handleExpand}
                 />
                 {state.selectedPlaylistId !== "" && state.playlistInfo !== null ?
@@ -125,6 +120,5 @@ export default function Spotify(props: any) {
                 <Sidebar key={"sidebar-right"} side="right"/>
                 <MediaController/>
             </Rnd>
-        </div>
     );
 }

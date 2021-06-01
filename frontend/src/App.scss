@@ -137,6 +137,7 @@ $lightsaber-mint: #99fadc;
 }
 
 .button-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   background: inherit;
@@ -145,6 +146,7 @@ $lightsaber-mint: #99fadc;
   margin-left: 1rem;
   height: 60%;
   width: 50px;
+  z-index: 3;
 }
 
 .button {

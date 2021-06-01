@@ -15,7 +15,6 @@ export default function AppIcon(props: any) {
     }
 
     function handleClick() {
-        console.log(props.app)
         props.onChildClick(props.app);
     }
 

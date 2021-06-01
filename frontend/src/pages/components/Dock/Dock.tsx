@@ -10,6 +10,5 @@ export default function Dock(props: any) {
                 <AppIcon app={"safari"} onChildClick={props.onChildClick}/>
             </div>
         </div>
-        
     );
 }

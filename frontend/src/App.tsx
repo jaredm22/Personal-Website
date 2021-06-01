@@ -15,25 +15,40 @@ function App() {
     topApp: "iMessage",
     iMessageMinimized: false, 
     spotifyMinimized: false,
-  })
+    safariMinimized: false,
+  });
+
+  function handleSpotifyMinimize() {
+    setState( {...state, spotifyMinimized: true } );
+  }
+
+  function handleiMessageMinimize() {
+    setState( {...state, iMessageMinimized: true } );
+  }
+
+  function handleSafariMinimize() {
+    setState( {...state, safariMinimized: true } );
+  }
 
 
   function handleAppClick(app: string) {
     if (app === "spotify") {
-      setState(prevState => {
-        return { 
-          ...prevState, 
+      setState({ 
+          ...state, 
           topApp: app,
           spotifyMinimized: false,
-        };
       });
-    } else  {
-      setState(prevState => {
-        return { 
-          ...prevState, 
+    } else if (app === "iMessage") {
+      setState({ 
+          ...state,
           topApp: app,
           iMessageMinimized: false,
-        };
+      });
+    } else if (app === "safari") {
+      setState({ 
+          ...state,
+          topApp: app,
+          safariMinimized: false,
       });
     }
   }
@@ -41,9 +56,10 @@ function App() {
   return (
     <div className="container">
       <Dock onChildClick={handleAppClick}/>    
-      <Messenger key={`messenger${state.iMessageMinimized ? "minimized" : ""}`} topApp={state.topApp === "iMessage"} onChildClick={handleAppClick} minimized={state.iMessageMinimized}/>
-      <Spotify topApp={state.topApp === "spotify"} onChildClick={handleAppClick} minimized={state.spotifyMinimized}/>
-      <Safari onChildClick={handleAppClick}/>
+      <Messenger topApp={state.topApp === "iMessage"} onChildClick={handleAppClick} minimized={state.iMessageMinimized} minimizeHandler={handleiMessageMinimize}/>
+      <Spotify topApp={state.topApp === "spotify"} onChildClick={handleAppClick} minimized={state.spotifyMinimized} minimizeHandler={handleSpotifyMinimize} />
+      <Safari topApp={state.topApp === "safari"} onChildClick={handleAppClick} minimized={state.safariMinimized} minimizeHandler={handleSafariMinimize}/>
+
       <Rnd className="lightsaber-draggable">
         <Lightsaber color="mint"/>  
       </Rnd>

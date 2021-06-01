@@ -12,15 +12,11 @@ export default function Safari(props: any) {
         selectedTab: 0,
         width: "80%",
         height: "90%",
-        x: 0,
+        x: 80,
         y: 40,
         expanded: false, 
-        minimized: false,
+        minimized: props.minimized,
     });
-
-    function handleMinimize() {
-        setState({...state, minimized: true });
-    }
 
     function handleExpand() {
         setState({
@@ -47,7 +43,6 @@ export default function Safari(props: any) {
     }
     
     return(
-        <div onClick={handleClick} style={{height: state.height, width: state.width}}>
             <Rnd
                 className="safari-container"
                 size={{ width: state.width,  height: state.height }}
@@ -75,10 +70,11 @@ export default function Safari(props: any) {
                 minHeight="500px"
                 minWidth="500px"
                 dragHandleClassName="draggable"
-                style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+                style={{display: (props.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+                onClick={handleClick}
             >
                 <Header
-                    minimizeHandler={handleMinimize}
+                    minimizeHandler={props.minimizeHandler}
                     expandHandler={handleExpand}
                 />
                 <div className="safari-main">
@@ -98,6 +94,5 @@ export default function Safari(props: any) {
                 </div>
 
             </Rnd>
-        </div>
     );
 }

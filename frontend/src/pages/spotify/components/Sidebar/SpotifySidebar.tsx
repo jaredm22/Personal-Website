@@ -50,7 +50,7 @@ function NavBar(props: any) {
 export default function Sidebar(props: any) {
 
     const examples = [];
-    for (var i = 0; i < 60; i++) {
+    for (var i = 0; i < 40; i++) {
         examples.push(i);
     }
 
