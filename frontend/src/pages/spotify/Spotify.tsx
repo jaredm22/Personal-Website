@@ -16,16 +16,14 @@ export default function Spotify(props: any) {
         playlistTracks: [],
         minimized: props.minimized,
         expanded: true,
-        x: 0, 
-        y: 0, 
-        width: "94.5%",
-        height: "100%",
+        x: 60, 
+        y: 10, 
+        width: "85%",
+        height: "90%",
     });
 
     function handleMinimize() {
-        setState(prevState => {
-            return { ...prevState, minimized: true };
-        });
+        setState((prevState) => {return {...prevState, minimized: true }})
     }
 
     function handleExpand() {
@@ -42,15 +40,11 @@ export default function Spotify(props: any) {
     }
 
     function handleNavClick(navItem: string) {
-        setState(prevState => {
-            return { ...prevState, selectedNavItem: navItem };
-        });
+        setState((prevState) => { return {...prevState, selectedNavItem: navItem }})
     }
 
     function handlePlaylistClick(playlistId: string) {
-        setState(prevState => {
-            return { ...prevState, selectedPlaylistId: playlistId};
-        });
+        setState((prevState) => { return {...prevState, selectedPlaylistId: playlistId}});
     }
 
     function handleClick() {
@@ -60,7 +54,7 @@ export default function Spotify(props: any) {
     useEffect(() => {
         axios.get("https://personal-website-backend-jmin.herokuapp.com/spotify")
             .then((res) => {
-                setState(prevState => {
+                setState((prevState) => {
                     return {
                         ...prevState,
                         dataLoaded: true,
@@ -80,7 +74,7 @@ export default function Spotify(props: any) {
                 size={{ width: state.width,  height: state.height }}
                 position={{ x: state.x, y: state.y }}
                 onDragStop={(e, d) => {
-                    setState( prevState => {
+                    setState((prevState) => {
                         return {
                             ...prevState,
                             x: d.x,
@@ -89,7 +83,7 @@ export default function Spotify(props: any) {
                     })
                 }}
                 onResizeStop={(e, direction, ref, delta, position) => {
-                    setState( prevState => {
+                    setState((prevState) => {
                         return {
                             ...prevState,
                             width: ref.style.width,

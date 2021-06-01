@@ -44,7 +44,7 @@ export default function ContentView(props: any) {
                 <img className="content-header-art" src={playlistInfo.images[0].url} alt=""/>
                 <div className="content-header-info">
                     <h6>PLAYLIST</h6>
-                    <h1 style={{marginTop: "10px", fontSize: "60px"}}>{playlistInfo.name}</h1>
+                    <h1 style={{marginTop: "10px", fontSize: "40px"}}>{playlistInfo.name}</h1>
                     {/* {playlistInfo.description !== ""? <h6>{playlistInfo.description}</h6> : false} */}
                     <div style={{display: "flex", flexDirection: "row", alignItems: "center",marginTop: "1rem"}}>
                         <img height="30px" src={headshot} style={{borderRadius: "25px"}} alt=""/>
@@ -73,11 +73,9 @@ export default function ContentView(props: any) {
                                     key={`list-item-${track.track.id}`} 
                                     className={`list-item ${state.selectedSong === track.track.id ? "selected" : "" }`} 
                                     onClick={() =>
-                                        setState(prevState => {
-                                            return {
-                                                ...prevState,
-                                                selectedSong: track.track.id, 
-                                            }
+                                        setState({
+                                            ...state,
+                                            selectedSong: track.track.id,
                                         })
                                     }
                                 >
