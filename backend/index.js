@@ -21,15 +21,7 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 // Retrieve an access token.
-spotifyApi.clientCredentialsGrant().then(
-  function(data) {
-    // Save the access token so that it's used in future calls
-    spotifyApi.setAccessToken(data.body['access_token']);
-  },
-  function(err) {
-    console.log('Something went wrong when retrieving an access token', err);
-  }
-);
+
 
 const mongoose = require("mongoose"); // new
 const source = process.env.ATLAS_CONNECTION;
@@ -48,6 +40,19 @@ connection.once('open', () => {
 const conversationRoutes = require('./src/controllers/conversation.controller')
 app.use('/conversations', conversationRoutes);
 
+app.get('/getToken', (req, res) => {
+  spotifyApi.clientCredentialsGrant().then(
+    function(data) {
+      // Save the access token so that it's used in future calls
+      spotifyApi.setAccessToken(data.body['access_token']);
+    },
+    function(err) {
+      console.log('Something went wrong when retrieving an access token', err);
+    }
+  );
+});
+
+
 
 app.get('/spotify', (req, res) => {
   spotifyApi.getUserPlaylists('1236247390', {limit: 50})
@@ -59,6 +64,7 @@ app.get('/spotify', (req, res) => {
     });
 });
 
+
 app.post("/playlist", (req, res) => {
   spotifyApi.getPlaylistTracks(req.body.id)
     .then((response) => {
@@ -67,6 +73,7 @@ app.post("/playlist", (req, res) => {
     })
     .catch((e) =>  console.log(e));
 }) 
+
 
 
 const PORT = process.env.PORT || 5000;

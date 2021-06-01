@@ -5,7 +5,10 @@ export default function Header(props: any) {
         <div className="safari-header draggable">
             <div className="safari-header-top">
                 <WindowButtons minimizeHandler={props.minimizeHandler} expandHandler={props.expandHandler}/>
-                <input className="input" type="text"/>
+                <input className="safari-input" type="text"/>
+                <div className="safari-header-top-right">
+
+                </div>
             </div>
            
             <div className="tabs">

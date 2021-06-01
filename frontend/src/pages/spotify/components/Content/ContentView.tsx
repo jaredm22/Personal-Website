@@ -44,19 +44,19 @@ export default function ContentView(props: any) {
                 <img className="content-header-art" src={playlistInfo.images[0].url} alt=""/>
                 <div className="content-header-info">
                     <h6>PLAYLIST</h6>
-                    <h1 style={{marginTop: "10px"}}>{playlistInfo.name}</h1>
+                    <h1 style={{marginTop: "10px", fontSize: "60px"}}>{playlistInfo.name}</h1>
                     {/* {playlistInfo.description !== ""? <h6>{playlistInfo.description}</h6> : false} */}
-                    <div style={{display: "flex", flexDirection: "row", marginTop: "1rem"}}>
+                    <div style={{display: "flex", flexDirection: "row", alignItems: "center",marginTop: "1rem"}}>
                         <img height="30px" src={headshot} style={{borderRadius: "25px"}} alt=""/>
-                        <h6>Jared • {playlistInfo.tracks.total} Songs, 2 hr 18 min</h6>
+                        <h5>Jared • {playlistInfo.tracks.total} Songs, 2 hr 18 min</h5>
                     </div>
                 </div>
             </div>
 
             <div className="content-body">
-                <div className="body-control-header">
-                    {/* <div className="play-button"></div> */}
-                </div>
+                {/* <div className="body-control-header">
+                    <div className="play-button"></div>
+                </div> */}
 
                 <div className="content-body-list">
                     <div className="list-header">
