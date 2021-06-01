@@ -1,31 +1,41 @@
 import { useState } from 'react';
 import Message from './Message';
 
+interface MyState {
+    input: string, 
+    userMessages: Array<Object>,
+    messages: Array<{sent: boolean, message: string}>,
+    numMessages: number,
+    lastSentMessageIndex: number,
+}
+
 export default function Transcript(props: any) {
 
-    const [ state, setState ] = useState({
+    const [ state, setState ] = useState <MyState> ({
         input: "",
         userMessages: [],
         messages: props.selectedTranscript.messages,
+        numMessages: props.selectedTranscript.numMessages,
+        lastSentMessageIndex: props.selectedTranscript.lastSentMessageIndex,
     })
 
-    function createMessage(b: boolean) {
-        if (b) {   
-            setState(prevState => {
-                return {
-                    ...prevState,
-                    messages: [...prevState.userMessages, []]
-                }
-           }) 
-        } 
+    function createMessage() {
+        setState({
+            ...state,
+            input: "",
+            messages: [...state.messages, {
+                sent: true,
+                message: state.input,
+            }],
+            numMessages: state.numMessages+1,
+            lastSentMessageIndex: state.messages.length,
+        }) 
     }
 
-    const transcript = props.selectedTranscript;
-
     var messages = []
-    for (var i = 0; i < transcript.numMessages; i++) {
-        messages.push(<Message key={i} type={state.messages[i].sent ? "sent" : "received"} text={state.messages[i].message}/>)
-        if (transcript.lastSentMessageIndex === i)  messages.push(<p className="delivered">Delivered</p>);
+    for (var i = 0; i < state.numMessages; i++) {
+        messages.push(<Message key={`${props.selectedTranscript.conversationId}-${i}`} type={state.messages[i].sent ? "sent" : "received"} text={state.messages[i].message}/>)
+        if (state.lastSentMessageIndex === i)  messages.push(<p className="delivered">Delivered</p>);
     }
 
     return(
@@ -52,15 +62,9 @@ export default function Transcript(props: any) {
                     className="message-input" 
                     placeholder="iMessage" 
                     type="text" 
-                    onChange={(e) => setState( prevState => {
-                        return {
-                            ...prevState,
-                            input: e.target.value,
-                        }
-                    })} 
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') { createMessage(true) }
-                    }}
+                    value={state.input}
+                    onChange={(e) => setState({...state, input: e.target.value})} 
+                    onKeyDown={(e) => { if (e.key === 'Enter') createMessage() }}
                 />
 
                 {/* <button onSubmit={() => {this.setState()}}></button> */}

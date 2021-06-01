@@ -24,51 +24,44 @@ export default function Messenger(props: any) {
         selected: 0,
         minimized: props.minimized,
         expanded: true,
-        x: 0, 
-        y: 0, 
-        width: "94.5%",
-        height: "100%",
+        x: 90, 
+        y: 60, 
+        width: `80%`,
+        height: '90%',
         transcripts: [],
     });
 
     useEffect(() => {
-        axios.get(`https://personal-website-backend-jmin.herokuapp.com/conversations/`)
-          .then(res => {
-            setState((prevState: state) => {
-                return { 
-                    ...prevState,
-                    dataLoaded: true,
-                    transcripts: res.data, 
-                };
-            });
-        })
-    }, [])
+        if (!state.dataLoaded) {
+            console.log("hapens")
+            axios.get(`https://personal-website-backend-jmin.herokuapp.com/conversations/`)
+            .then(res => {
+              setState({
+                      ...state, 
+                      dataLoaded: true,
+                      transcripts: res.data, 
+                  
+              });
+          })
+        }
+    }, [state])
 
     function handleSelect(selectedId: any) {
-        setState(prevState => {
-            return {
-                ...prevState,
-                selected: selectedId,
-            }
-        });
+        setState({ ...state, selected: selectedId });
     }
     
     function handleMinimize() {
-        setState(prevState => {
-            return { ...prevState, minimized: true };
-        });
+        setState({...state, minimized: true });
     }
   
     function handleExpand() {
-        setState(prevState => {
-            return { 
-                ...prevState, 
-                expanded: true, 
-                width: "100%",
-                height: "100%",
-                x: 80,
-                y: 0,
-            };
+        setState({
+            ...state,
+            expanded: true, 
+            width: '100%',
+            height: '100%',
+            x:0,
+            y:0,
         });
     }
 
@@ -84,28 +77,24 @@ export default function Messenger(props: any) {
                     size={{ width: state.width,  height: state.height }}
                     position={{ x: state.x, y: state.y }}
                     onDragStop={(e, d) => {
-                        setState( prevState => {    
-                            return {
-                                ...prevState,
-                                x: d.x,
-                                y: d.y,
-                            }
+                        setState({
+                            ...state,
+                            x: d.x, 
+                            y: d.y,
                         })
                     }}
-                    // onResizeStop={(e, direction, ref, delta, position) => {
-                    //     setState( prevState => {
-                    //         return {
-                    //             ...prevState,
-                    //             width: ref.style.width,
-                    //             height: ref.style.height,
-                    //             expanded: false, 
-                    //             ...position,
-                    //         }
-                    //     })
-                    // }}
+                    onResizeStop={(e, direction, ref, delta, position) => {
+                        setState({
+                            ...state,
+                            width: ref.style.width,
+                            height: ref.style.height,
+                            expanded: false, 
+                            ...position,
+                        })
+                    }}
                     enableResizing={false}
                     dragHandleClassName="draggable"
-                    style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+                    style={{display: (state.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1), height: state.height }}
                 >
                     <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={handleMinimize} expandHandler={handleExpand} transcripts={state.transcripts}/>
                     <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts[state.selected]}/>

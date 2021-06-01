@@ -10,30 +10,26 @@ export default function Safari(props: any) {
 
     const [ state, setState ] = useState({
         selectedTab: 0,
-        width: "94.5%",
-        height: "100%",
+        width: "80%",
+        height: "90%",
         x: 0,
-        y: 0,
+        y: 40,
         expanded: false, 
         minimized: false,
     });
 
     function handleMinimize() {
-        setState(prevState => {
-            return { ...prevState, minimized: true };
-        });
+        setState({...state, minimized: true });
     }
 
     function handleExpand() {
-        setState(prevState => {
-            return { 
-                ...prevState, 
-                expanded: true, 
-                width: "100%",
-                height: "100%",
-                x: 0,
-                y: 0,
-            };
+        setState({
+            ...state, 
+            expanded: true, 
+            width: "100%",
+            height: "100%",
+            x: 0,
+            y: 0,
         });
     }
 
@@ -51,7 +47,7 @@ export default function Safari(props: any) {
     }
     
     return(
-        <div onClick={handleClick} style={{height: "100%", width: "100%"}}>
+        <div onClick={handleClick} style={{height: state.height, width: state.width}}>
             <Rnd
                 className="safari-container"
                 size={{ width: state.width,  height: state.height }}

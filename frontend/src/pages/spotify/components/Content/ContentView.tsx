@@ -20,22 +20,23 @@ export default function ContentView(props: any) {
     });
 
     useEffect(() => {
-        axios({
-            method: "post",
-            url: "https://personal-website-backend-jmin.herokuapp.com/playlist",
-            data: { id: props.selectedPlaylist },
-        })
-        .then((res) => {
-            setState((prevState) => {
-                return {
-                    ...prevState,
+        if (!state.dataLoaded) {
+            console.log("data")
+            axios({
+                method: "post",
+                url: "https://personal-website-backend-jmin.herokuapp.com/playlist",
+                data: { id: props.selectedPlaylist },
+            })
+            .then((res) => {
+                setState({
+                    ...state,
                     playlistTracks: res.data,
                     dataLoaded: true,
-                }
+                })
             })
-        })
-        .catch((err) => console.log("An error occured", err));
-    });
+            .catch((err) => console.log("An error occured", err));
+        }
+    }, [state, props.selectedPlaylist]);
 
     let playlistInfo = props.playlistInfo;
     return(

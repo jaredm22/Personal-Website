@@ -6,7 +6,7 @@ export default function Main(props: any) {
             <div className="main-nav draggable">
                 
             </div>
-            <ContentView {...props}/>
+            <ContentView key={props.selectedPlaylist} {...props}/>
         </div>
     )
 }
