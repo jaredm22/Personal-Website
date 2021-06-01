@@ -22,7 +22,7 @@ export default function ContentView(props: any) {
     useEffect(() => {
         axios({
             method: "post",
-            url: "http://personal-website-backend-jmin.herokuapp.com/playlist",
+            url: "https://personal-website-backend-jmin.herokuapp.com/playlist",
             data: { id: props.selectedPlaylist },
         })
         .then((res) => {

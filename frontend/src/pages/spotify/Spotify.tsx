@@ -58,7 +58,7 @@ export default function Spotify(props: any) {
     }
 
     useEffect(() => {
-        axios.get("http://personal-website-backend-jmin.herokuapp.com/spotify")
+        axios.get("https://personal-website-backend-jmin.herokuapp.com/spotify")
             .then((res) => {
                 setState(prevState => {
                     return {
@@ -100,7 +100,7 @@ export default function Spotify(props: any) {
                         }
                     })
                 }}
-                
+
                 minHeight="500px"
                 minWidth="500px"
                 dragHandleClassName="draggable"
