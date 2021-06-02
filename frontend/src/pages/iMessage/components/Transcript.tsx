@@ -8,6 +8,7 @@ interface MyState {
     messages: Array<{sent: boolean, message: string}>,
     numMessages: number,
     lastSentMessageIndex: number,
+    contactName: string,
 }
 
 export default function Transcript(props: any) {
@@ -18,6 +19,7 @@ export default function Transcript(props: any) {
         messages: props.selectedTranscript.messages || [],
         numMessages: props.selectedTranscript.numMessages || 0,
         lastSentMessageIndex: props.selectedTranscript.lastSentMessageIndex || -1,
+        contactName: "",
     })
 
     function createMessage() {
@@ -52,7 +54,21 @@ export default function Transcript(props: any) {
         <div className="main">
 
             <div className="main-header draggable">
-                <div className="contact">To: <span className="contact-name">{props.selectedTranscript.name}</span></div>
+                <div className="contact">
+                    To: 
+                    {props.selectedTranscript.conversationId === 1000 ?
+                        <input 
+                            className="contact-name-input" 
+                            placeholder="" 
+                            type="text" 
+                            value={state.contactName}
+                            onChange={(e) => setState({...state, contactName: e.target.value})} 
+                            // onKeyDown={(e) => { if (e.key === 'Enter') createMessage() }}
+                        />
+                    :
+                        <span className="contact-name">{props.selectedTranscript.name}</span>
+                    }
+                </div>
             </div>
 
             <div className="main-content">
@@ -76,8 +92,6 @@ export default function Transcript(props: any) {
                     onChange={(e) => setState({...state, input: e.target.value})} 
                     onKeyDown={(e) => { if (e.key === 'Enter') createMessage() }}
                 />
-
-                {/* <button onSubmit={() => {this.setState()}}></button> */}
 
                 <div className="main-right">
 

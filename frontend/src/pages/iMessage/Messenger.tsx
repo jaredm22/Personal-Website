@@ -37,11 +37,11 @@ export default function Messenger(props: any) {
         if (!state.dataLoaded) {
             axios.get(`https://personal-website-backend-jmin.herokuapp.com/conversations/`)
             .then(res => {
-              setState({
-                      ...state, 
-                      dataLoaded: true,
-                      transcripts: res.data,       
-              });
+                setState({
+                    ...state, 
+                    dataLoaded: true,
+                    transcripts: res.data,     
+                });
           })
         }
     }, [state])
@@ -72,9 +72,6 @@ export default function Messenger(props: any) {
             selected: 1000
         });
     }
-
-
-    console.log(state.createNew)
     
     return(
         state.dataLoaded ?
@@ -105,7 +102,7 @@ export default function Messenger(props: any) {
                 onClick={handleClick}
             >
                 <Sidebar onCreateNew={handleNewConversation} createNew={state.createNew} onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={props.minimizeHandler} expandHandler={handleExpand} transcripts={state.transcripts}/>
-                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.selected !== 1000 ? state.transcripts[state.selected] : false}/>
+                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts.find((x: any) => x.conversationId === state.selected)}/>
             </Rnd>
         :
             <div className="messenger-container"></div>           
