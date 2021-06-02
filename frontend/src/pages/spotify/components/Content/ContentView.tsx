@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import headshot from '../../../../images/Headshot.jpg';
 // import MediaCard from "../MediaCard";
 import axios from 'axios';
-import { parseISO, format } from 'date-fns';
 
 function parseTime(time: number) {
     var minutes = Math.floor((time/1000)/60);
@@ -21,7 +20,7 @@ export default function ContentView(props: any) {
 
     useEffect(() => {
         if (!state.dataLoaded) {
-            console.log("data")
+            console.log("data");
             axios({
                 method: "post",
                 url: "https://personal-website-backend-jmin.herokuapp.com/playlist",
@@ -64,12 +63,11 @@ export default function ContentView(props: any) {
                         <h6 className="item-number">#</h6>
                         <div className="title">TITLE</div>
                         <h6 className="album-name">ALBUM</h6>
-                        <h6 className="added-date">DATE ADDED</h6>
                         <h6 className="time">Time</h6>
                     </div>
-                    {state.playlistTracks !== [] ?
-                        state.playlistTracks.map((track: any, i: number) => {
-                            return(
+                    <div key={props.selectedPlaylist} className="track-list">
+                        {state.playlistTracks !== [] ?
+                            state.playlistTracks.map((track: any, i: number) => (
                                 <div 
                                     key={`list-item-${track.track.id}`} 
                                     className={`list-item ${state.selectedSong === track.track.id ? "selected" : "" }`} 
@@ -89,14 +87,12 @@ export default function ContentView(props: any) {
                                         </div>
                                     </div>
                                     <h6 className="album-name">{track.track.album.name}</h6>
-                                    <h6 className="added-date">{format(parseISO(track.added_at), "MMM d, yyyy")}</h6>
+                                    {/* <h6 className="added-date">{format(parseISO(track.added_at), "MMM d, yyyy")}</h6> */}
                                     <h6 className="time">{`${parseTime(track.track.duration_ms)}`}</h6>
                                 </div>
-                            );
-                        })
-                    : 
-                        <div></div>
-                    }
+                            ))
+                        : <div></div>}
+                    </div>
                 </div>
             </div>
         </div>

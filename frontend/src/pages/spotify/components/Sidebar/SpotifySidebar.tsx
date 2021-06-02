@@ -103,7 +103,7 @@ export default function Sidebar(props: any) {
         <div className="right-sidebar">
             <div className="header draggable">
                 <h4>My Favorite Artists</h4>
-                <p>Some of my favorite artists</p>
+                <p>Some of my favorite artists, and my favorite song and album of theirs.</p>
             </div>
 
             <div className="friends-list">

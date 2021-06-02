@@ -48,18 +48,16 @@ export default function Spotify(props: any) {
         if (!state.dataLoaded) {
             axios.get("https://personal-website-backend-jmin.herokuapp.com/spotify")
             .then((res) => {
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        dataLoaded: true,
-                        playlistInfo: res.data,
-                        selectedPlaylistId: res.data[0].id,
-                    }
+                setState({
+                    ...state,
+                    dataLoaded: true,
+                    playlistInfo: res.data,
+                    selectedPlaylistId: res.data[0].id,
                 })
             })
             .catch((err) => console.log("An error occured", err));
         }
-      }, [state]);
+    }, [state]);
     
     return(
             <Rnd
@@ -104,7 +102,7 @@ export default function Spotify(props: any) {
                 />
                 {state.selectedPlaylistId !== "" && state.playlistInfo !== null ?
                     <Main 
-                        key={`main${"-" + state.selectedPlaylistId}`} 
+                        key={`main-${state.selectedPlaylistId}`} 
                         selectedPlaylist={state.selectedPlaylistId} 
                         playlistInfo={state.playlistInfo.find((p: any) => p.id === state.selectedPlaylistId)} 
                     />
