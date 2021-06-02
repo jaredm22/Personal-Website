@@ -75,7 +75,7 @@ app.post("/playlist", (req, res) => {
 }) 
 
 app.get("/artist", (req, res) => {
-  spotifyApi.getArtists(['6l3HvQ5sa6mXTsMTB19rO5'])
+  spotifyApi.getArtists(['43ZHCT0cAZBISjO8DG9PnE'])
     .then((response) => {
         console.log(response.body.items);
         res.json(response.body.items);
