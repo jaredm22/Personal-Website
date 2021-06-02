@@ -74,6 +74,15 @@ app.post("/playlist", (req, res) => {
     .catch((e) =>  console.log(e));
 }) 
 
+app.get("/artist", (req, res) => {
+  spotifyApi.getArtists(['6l3HvQ5sa6mXTsMTB19rO5'])
+    .then((response) => {
+        console.log(response.body.items);
+        res.json(response.body.items);
+    })
+    .catch((e) =>  console.log(e));
+}) 
+
 
 
 const PORT = process.env.PORT || 5000;
