@@ -126,6 +126,7 @@ $lightsaber-mint: #99fadc;
 
   .app-icon {
     img {
+      height: 50px;
       border-radius: 10px;
       margin: 0.5em 0.5em;
     }
@@ -133,6 +134,7 @@ $lightsaber-mint: #99fadc;
 
   .app-icon:hover {
     transform: scale(1.5);
+    translate: 10px;
   }
 }
 

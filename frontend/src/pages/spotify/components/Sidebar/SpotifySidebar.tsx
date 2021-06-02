@@ -1,4 +1,3 @@
-import React from 'react';
 import WindowButtons from '../../../components/WindowButtons';
 import FriendCard from './components/FriendCard';
 import Playlists from './components/Playlists';
@@ -49,10 +48,44 @@ function NavBar(props: any) {
 
 export default function Sidebar(props: any) {
 
-    const examples = [];
-    for (var i = 0; i < 40; i++) {
-        examples.push(i);
-    }
+    const artists = [
+        {
+            name: "J-Cole",
+            song: "Sacrifices - ROTD3 ",
+            album: "2014 Forest Hills Drive",
+            imageUrl: "https://i.scdn.co/image/ab6761610000e5ebadd503b411a712e277895c8a"
+        },
+        {
+            name: "Daniel Caesar",
+            song: "Superposition - CASE STUDY 01",
+            album: "Freudian",
+            imageUrl: "https://i.scdn.co/image/f9dbecfbec79585821a0058c96fde9a57b9c106c"
+        },
+        {
+            name: "Frank Ocean",
+            song: "Thinkin Bout You - Blond",
+            album: "Blond",
+            imageUrl: "https://i.scdn.co/image/7db34c8aace6feb91f38601bb75e6b3301b4657a"
+        },
+        {
+            name: "Brockhampton",
+            song: "Sugar - Ginger",
+            album: "Ginger",
+            imageUrl: "https://pbs.twimg.com/media/Ex8MCPSVoAEqtqa.jpg"
+        },
+        {
+            name: "Cautious Clay",
+            song: "Stolen Moments - Blood Type",
+            album: "Blood Type",
+            imageUrl: "https://www.montereyherald.com/wp-content/uploads/2019/01/Cautious-Clay-Press-Photo-.jpg"
+        },
+        {
+            name: "John Mayer",
+            song: "New Light - New Light",
+            album: "Continuum",
+            imageUrl: "http://www.yardbarker.com/media/3/6/36e658a501eaa6e99ab24eb187093adc2f32b403/xl/john-mayer-reportedly-talks-host-late-night-talk.jpg?v=1"
+        },
+    ]
 
     return(
         props.side === "left" ?
@@ -69,12 +102,19 @@ export default function Sidebar(props: any) {
 
         <div className="right-sidebar">
             <div className="header draggable">
-                <h4>Friend Activity</h4>
+                <h4>My Favorite Artists</h4>
+                <p>Some of my favorite artists</p>
             </div>
 
             <div className="friends-list">
-                {examples.map((i) => 
-                    <FriendCard key={`friends-${i}`}/>
+                {artists.map((artist, i) => 
+                    <FriendCard 
+                        key={`friends-${i}`} 
+                        name={artist.name} 
+                        song={artist.song} 
+                        album={artist.album}
+                        imageUrl={artist.imageUrl}
+                    />
                 )}
             </div>
         </div>

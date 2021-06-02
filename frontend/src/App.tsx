@@ -7,6 +7,7 @@ import { Rnd } from 'react-rnd';
 import './App.scss';
 import Lightsaber from './pages/components/Lightsaber';
 import * as dotenv from 'dotenv';
+// import Bookshelf from './pages/bookshelf/Bookshelf';
 
 dotenv.config();
 
@@ -59,7 +60,7 @@ function App() {
       <Messenger topApp={state.topApp === "iMessage"} onChildClick={handleAppClick} minimized={state.iMessageMinimized} minimizeHandler={handleiMessageMinimize}/>
       <Spotify topApp={state.topApp === "spotify"} onChildClick={handleAppClick} minimized={state.spotifyMinimized} minimizeHandler={handleSpotifyMinimize} />
       <Safari topApp={state.topApp === "safari"} onChildClick={handleAppClick} minimized={state.safariMinimized} minimizeHandler={handleSafariMinimize}/>
-
+      {/* <Bookshelf/> */}
       <Rnd className="lightsaber-draggable">
         <Lightsaber color="mint"/>  
       </Rnd>

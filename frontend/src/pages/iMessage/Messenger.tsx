@@ -26,7 +26,7 @@ export default function Messenger(props: any) {
         minimized: props.minimized,
         expanded: true,
         x: 120, 
-        y: 70, 
+        y: 75, 
         width: `80%`,
         height: '90%',
         transcripts: [],

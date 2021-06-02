@@ -13,7 +13,7 @@ export default function Safari(props: any) {
         width: "80%",
         height: "90%",
         x: 80,
-        y: 40,
+        y: 35,
         expanded: false, 
         minimized: props.minimized,
     });

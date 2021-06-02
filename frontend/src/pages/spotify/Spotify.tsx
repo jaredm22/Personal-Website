@@ -22,24 +22,22 @@ export default function Spotify(props: any) {
     });
 
     function handleExpand() {
-        setState(prevState => {
-            return { 
-                ...prevState, 
-                expanded: true, 
-                width: "100%",
-                height: "100%",
-                x: 0,
-                y: 0,
-            };
+        setState({
+            ...state, 
+            expanded: true, 
+            width: "100%",
+            height: "100%",
+            x: 0,
+            y: 0,
         });
     }
 
     function handleNavClick(navItem: string) {
-        setState((prevState) => { return {...prevState, selectedNavItem: navItem }})
+        setState({...state, selectedNavItem: navItem });
     }
 
     function handlePlaylistClick(playlistId: string) {
-        setState((prevState) => { return {...prevState, selectedPlaylistId: playlistId}});
+        setState({...state, selectedPlaylistId: playlistId});
     }
 
     function handleClick() {

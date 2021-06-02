@@ -138,6 +138,7 @@ h6:hover { color: white; text-decoration: underline;}
                     }
 
                     .title {
+                        width: 100%;
                         grid-area: title;
                         display: flex;
                         flex-direction: row;
@@ -272,9 +273,18 @@ h6:hover { color: white; text-decoration: underline;}
         width: 100%;
         color: white;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        h4 {
+            padding-top: 10px;
+        }
+
+        p {
+            padding-top: 10px;
+            font-size: 8px;
+        }
     }
 
     .friends-list {
@@ -297,12 +307,12 @@ h6:hover { color: white; text-decoration: underline;}
             width: 100%;
 
             .image {
-                height: 40px;
-                width: 40px;
+                height: 45px;
+                width: 45px;
                 border-radius: 25px;
             }            
         }
-        
+
         .friend-card-content {
             display: flex;
             flex-direction: column;
@@ -313,6 +323,11 @@ h6:hover { color: white; text-decoration: underline;}
                 justify-content: space-between;
                 height: 100%;
                 width: 100%;
+            }
+
+            h6 {
+                font-size: 2px;
+                font-weight: 300;
             }
         }
     }
