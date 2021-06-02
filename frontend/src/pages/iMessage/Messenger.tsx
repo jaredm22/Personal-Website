@@ -34,7 +34,6 @@ export default function Messenger(props: any) {
 
     useEffect(() => {
         if (!state.dataLoaded) {
-            console.log("hapens")
             axios.get(`https://personal-website-backend-jmin.herokuapp.com/conversations/`)
             .then(res => {
               setState({

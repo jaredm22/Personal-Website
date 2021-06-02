@@ -32,9 +32,27 @@ export default function Transcript(props: any) {
         }) 
     }
 
-    var messages = []
+    var messages = [];
+
     for (var i = 0; i < state.numMessages; i++) {
-        messages.push(<Message key={`${props.selectedTranscript.conversationId}-${i}`} type={state.messages[i].sent ? "sent" : "received"} text={state.messages[i].message}/>)
+        if (i !== state.numMessages - 1) {        
+            messages.push(
+                <Message 
+                    key={`${props.selectedTranscript.conversationId}-${i}`} 
+                    type={state.messages[i].sent ? "sent" : "received"} 
+                    text={state.messages[i].message} 
+                    last={state.messages[i+1].sent !== state.messages[i].sent}
+
+                />)
+        } else {
+            messages.push(
+                <Message 
+                    key={`${props.selectedTranscript.conversationId}-${i}`} 
+                    type={state.messages[i].sent ? "sent" : "received"} 
+                    text={state.messages[i].message} 
+                    last={true}
+                />)
+        }
         if (state.lastSentMessageIndex === i)  messages.push(<p className="delivered">Delivered</p>);
     }
 
