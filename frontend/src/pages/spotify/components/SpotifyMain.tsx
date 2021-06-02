@@ -1,4 +1,4 @@
-import ContentView from "./Content/ContentView";
+import ContentView from "./ContentView";
 
 export default function Main(props: any) {
     

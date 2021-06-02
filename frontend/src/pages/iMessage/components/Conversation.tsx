@@ -34,7 +34,7 @@ export default function Conversation(props: any) {
                 >
                     <div className="content-top">
                         <h5>{props.name}</h5>
-                        <p>Yesterday</p>
+                        <p>Today</p>
                     </div>
                     <p>{props.description}</p>
                 </div>

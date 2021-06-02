@@ -293,13 +293,16 @@ h6:hover { color: white; text-decoration: underline;}
         height: 100%;
         width: 100%;
         overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .friend-card {
         display: grid;
+        width: 100%;
         grid-template-columns: 50px calc(100% - 50px - 1.2rem);
         grid-template-areas: "photo content";
         margin: 1.5rem 0;
+        
 
         .friend-card-photo {
             grid-area: photo;
@@ -310,11 +313,13 @@ h6:hover { color: white; text-decoration: underline;}
                 height: 45px;
                 width: 45px;
                 border-radius: 25px;
+                object-fit: cover;
             }            
         }
 
         .friend-card-content {
             display: flex;
+            width: 100%;
             flex-direction: column;
 
             .content-top {
@@ -327,32 +332,20 @@ h6:hover { color: white; text-decoration: underline;}
 
             .album {
                 display: flex;
+                width: 100%;
                 flex-direction: row;
                 align-items: center;
-
-                .album-outer {
-                    height: 7px;
-                    width: 7px;
-                    border-radius: 25px;
-                    border: 1px solid $spotify-light-gray;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-    
-                    .album-inner {
-                        height: 2px;
-                        width: 2px;
-                        border-radius: 25px;
-                        margin: auto 0;
-                        border: 1px solid $spotify-light-gray;    
-                    }
-                }
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
 
             h6 {
                 font-size: 2px;
                 font-weight: 300;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
     }

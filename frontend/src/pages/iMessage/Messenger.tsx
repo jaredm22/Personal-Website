@@ -7,6 +7,7 @@ import axios from 'axios';
 
 interface state {
     dataLoaded: boolean,
+    createNew: boolean,
     selected: number,
     minimized: boolean,
     expanded: boolean,
@@ -18,10 +19,10 @@ interface state {
 }
 
 export default function Messenger(props: any) {
-   
 
     const [ state, setState ] = useState<state>({
         dataLoaded: false,
+        createNew: false,
         selected: 0,
         minimized: props.minimized,
         expanded: true,
@@ -64,6 +65,16 @@ export default function Messenger(props: any) {
         props.onChildClick("iMessage");
     }
 
+    function handleNewConversation() {
+        setState({
+            ...state,
+            createNew: true,
+            selected: 1000
+        });
+    }
+
+
+    console.log(state.createNew)
     
     return(
         state.dataLoaded ?
@@ -93,8 +104,8 @@ export default function Messenger(props: any) {
                 style={{display: (props.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1), height: state.height }}
                 onClick={handleClick}
             >
-                <Sidebar onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={props.minimizeHandler} expandHandler={handleExpand} transcripts={state.transcripts}/>
-                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.transcripts[state.selected]}/>
+                <Sidebar onCreateNew={handleNewConversation} createNew={state.createNew} onChildClick={handleSelect} selectedIndex={state.selected} minimizeHandler={props.minimizeHandler} expandHandler={handleExpand} transcripts={state.transcripts}/>
+                <Transcript key={`transcript${"-" + state.selected}`} selectedIndex={state.selected} selectedTranscript={state.selected !== 1000 ? state.transcripts[state.selected] : false}/>
             </Rnd>
         :
             <div className="messenger-container"></div>           

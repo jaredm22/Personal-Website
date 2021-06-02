@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import headshot from '../../../../images/Headshot.jpg';
+import headshot from '../../../images/Headshot.jpg';
 // import MediaCard from "../MediaCard";
 import axios from 'axios';
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { format } from 'date-fns';
 import Message from './Message';
 
 interface MyState {
@@ -14,9 +15,9 @@ export default function Transcript(props: any) {
     const [ state, setState ] = useState <MyState> ({
         input: "",
         userMessages: [],
-        messages: props.selectedTranscript.messages,
-        numMessages: props.selectedTranscript.numMessages,
-        lastSentMessageIndex: props.selectedTranscript.lastSentMessageIndex,
+        messages: props.selectedTranscript.messages || [],
+        numMessages: props.selectedTranscript.numMessages || 0,
+        lastSentMessageIndex: props.selectedTranscript.lastSentMessageIndex || -1,
     })
 
     function createMessage() {
@@ -33,26 +34,17 @@ export default function Transcript(props: any) {
     }
 
     var messages = [];
-
     for (var i = 0; i < state.numMessages; i++) {
-        if (i !== state.numMessages - 1) {        
-            messages.push(
-                <Message 
-                    key={`${props.selectedTranscript.conversationId}-${i}`} 
-                    type={state.messages[i].sent ? "sent" : "received"} 
-                    text={state.messages[i].message} 
-                    last={state.messages[i+1].sent !== state.messages[i].sent}
-
-                />)
-        } else {
-            messages.push(
-                <Message 
-                    key={`${props.selectedTranscript.conversationId}-${i}`} 
-                    type={state.messages[i].sent ? "sent" : "received"} 
-                    text={state.messages[i].message} 
-                    last={true}
-                />)
-        }
+        messages.push(
+            <Message 
+                key={`${props.selectedTranscript.conversationId}-${i}`} 
+                type={state.messages[i].sent ? "sent" : "received"} 
+                text={state.messages[i].message} 
+                last={ i !== state.numMessages - 1 ?
+                    state.messages[i+1].sent !== state.messages[i].sent
+                    : true
+                }
+        />)
         if (state.lastSentMessageIndex === i)  messages.push(<p className="delivered">Delivered</p>);
     }
 
@@ -60,13 +52,13 @@ export default function Transcript(props: any) {
         <div className="main">
 
             <div className="main-header draggable">
-                
+                <div className="contact">To: <span className="contact-name">{props.selectedTranscript.name}</span></div>
             </div>
 
             <div className="main-content">
                 <div className="timestamp">
-                    <h6>Yesterday</h6>
-                    <p>8:35 PM</p>
+                    <h6>Today</h6>
+                    <p>{format(new Date(),'h:mm a')}</p>
                 </div>
                 {messages}
             </div>

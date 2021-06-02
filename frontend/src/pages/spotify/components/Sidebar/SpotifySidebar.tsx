@@ -56,6 +56,12 @@ export default function Sidebar(props: any) {
             imageUrl: "https://i.scdn.co/image/ab6761610000e5ebadd503b411a712e277895c8a"
         },
         {
+            name: "Mac Miller",
+            song: "Weekend - GO:OD AM",
+            album: "Swimming",
+            imageUrl: "https://static.onecms.io/wp-content/uploads/sites/6/2018/11/gettyimages-608990834-2000.jpg"
+        },
+        {
             name: "Daniel Caesar",
             song: "Superposition - CASE STUDY 01",
             album: "Freudian",
@@ -84,6 +90,12 @@ export default function Sidebar(props: any) {
             song: "New Light - New Light",
             album: "Continuum",
             imageUrl: "http://www.yardbarker.com/media/3/6/36e658a501eaa6e99ab24eb187093adc2f32b403/xl/john-mayer-reportedly-talks-host-late-night-talk.jpg?v=1"
+        },
+        {
+            name: "Billie Eilish",
+            song: "when the party's over - WHEN WE FALL ASLEEP, WHERE DO WE GO?",
+            album: "WHEN WE FALL ASLEEP, WHERE DO WE GO?",
+            imageUrl: "https://parade.com/wp-content/uploads/2021/03/billie-eilish-net-worth-1024x640.jpg"
         },
     ]
 
