@@ -1,65 +1,81 @@
 import { useState } from 'react';
 import './bookshelf.scss';
+import Lightsaber from '../components/Lightsaber';
 import { Rnd } from 'react-rnd';
-// import axios from 'axios';
+import Card from './components/Card';
+
+var gameIds: Array<string> = [
+    '58175',
+    '58134',
+    
+]
 
 export default function Bookshelf(props: any) {
 
     const [ state, setState ] = useState({
-        dataLoaded: false,
-        minimized: false,
-        x: 0, 
-        y: 0, 
-        width: "100%",
-        height: "100%",
+        selectedTab: 0,
+        width: "80%",
+        height: "90%",
+        x: 80,
+        y: 40,
+        expanded: false, 
+        minimized: props.minimized,
     });
 
-    // function handleMinimize() {
+    function handleExpand() {
+        setState({
+            ...state, 
+            expanded: true, 
+            width: "100%",
+            height: "100%",
+            x: 0,
+            y: 0,
+        });
+    }
+
+    // function handleTabClick(tab: string) {
     //     setState(prevState => {
-    //         return { ...prevState, minimized: true };
+    //         return { 
+    //             ...prevState, 
+    //             selectedTab: 0
+    //         };
     //     });
     // }
 
-    // function handleNavClick(navItem: string) {
-    //     setState(prevState => {
-    //         return { ...prevState, selectedNavItem: navItem };
-    //     });
-    // }
-
+    function handleClick() {
+        props.onChildClick("bookshelf");
+    }
+    
     return(
-        <Rnd
-            className="bookshelf-container"
-            size={{ width: state.width,  height: state.height }}
-            position={{ x: state.x, y: state.y }}
-            onDragStop={(e, d) => {
-                console.log(d);
-                setState( prevState => {
-                    return {
-                        ...prevState,
+            <Rnd
+                className="bookshelf-container"
+                size={{ width: state.width,  height: state.height }}
+                position={{ x: state.x, y: state.y }}
+                onDragStop={(e, d) => {
+                    setState({
+                        ...state,
                         x: d.x,
                         y: d.y,
-                    }
-                })
-            }}
-            onResizeStop={(e, direction, ref, delta, position) => {
-                setState( prevState => {
-                    return {
-                        ...prevState,
+                    })
+                }}
+                onResizeStop={(e, direction, ref, delta, position) => {
+                    setState({
+                        ...state,
                         width: ref.style.width,
                         height: ref.style.height,
+                        expanded: false, 
                         ...position,
-                    }
-                })
-            }}
-            style={{display: (state.minimized ? "none" : "grid")}}
-        >
-            <div className="bookshelf-sidebar">
-
-            </div>
-
-            <div className="bookshelf-main">
-                
-            </div>
-        </Rnd>
+                    })
+                }}
+                minHeight="500px"
+                minWidth="1100px"
+                dragHandleClassName="draggable"
+                style={{display: (props.minimized ? "none" : "grid"), zIndex: (props.topApp ? 2 : 1)}}
+            >
+                <div className="bookshelf-main">
+                    <Card id={"58175"}/>
+                    <Card id={"marvels-spider-man"}/>   
+                </div>
+            </Rnd>
     );
 }

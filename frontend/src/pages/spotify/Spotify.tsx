@@ -15,7 +15,7 @@ export default function Spotify(props: any) {
         playlistInfo: [],
         playlistTracks: [],
         expanded: true,
-        x: 100, 
+        x: 110, 
         y: 5, 
         width: "85%",
         height: "90%",

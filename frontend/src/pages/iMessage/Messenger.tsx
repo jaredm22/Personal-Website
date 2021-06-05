@@ -26,9 +26,9 @@ export default function Messenger(props: any) {
         selected: 0,
         minimized: props.minimized,
         expanded: true,
-        x: 120, 
-        y: 75, 
-        width: `80%`,
+        x: 90, 
+        y: 20, 
+        width: `90%`,
         height: '90%',
         transcripts: [],
     });
@@ -84,7 +84,8 @@ export default function Messenger(props: any) {
                         ...state,
                         x: d.x, 
                         y: d.y,
-                    })
+                    });
+                    handleClick();
                 }}
                 onResizeStop={(e, direction, ref, delta, position) => {
                     setState({

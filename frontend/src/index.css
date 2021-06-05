@@ -3,7 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("../src/images/bigsur.jpeg") no-repeat;
+  background: url("../src/images/firewatch.jpg") no-repeat;
   background-size: cover;
   overflow: hidden;
 }

@@ -1,7 +1,7 @@
 import Conversation from './Conversation';
 // import { useState, useEffect} from 'react';
 import WindowButtons from '../../components/WindowButtons';
-import composeIcon from '../../../images/compose.svg';
+import composeIcon from '../../../images/Compose.svg';
 
 
 export default function Sidebar(props: any) {

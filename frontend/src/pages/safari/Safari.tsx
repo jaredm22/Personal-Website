@@ -12,8 +12,8 @@ export default function Safari(props: any) {
         selectedTab: 0,
         width: "80%",
         height: "90%",
-        x: 80,
-        y: 35,
+        x: 130,
+        y: 40,
         expanded: false, 
         minimized: props.minimized,
     });

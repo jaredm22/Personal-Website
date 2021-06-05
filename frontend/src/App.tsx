@@ -15,8 +15,8 @@ function App() {
   const [state, setState] = React.useState({
     topApp: "iMessage",
     iMessageMinimized: false, 
-    spotifyMinimized: false,
-    safariMinimized: false,
+    spotifyMinimized: true,
+    safariMinimized: true,
   });
 
   function handleSpotifyMinimize() {

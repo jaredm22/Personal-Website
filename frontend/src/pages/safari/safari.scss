@@ -38,6 +38,9 @@
             background: $apple-dark-gray3;
             border: none;
             color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .safari-header-top-right {
@@ -45,7 +48,6 @@
         }
     }
 
-    
 
     .tabs {
         height: 25px;

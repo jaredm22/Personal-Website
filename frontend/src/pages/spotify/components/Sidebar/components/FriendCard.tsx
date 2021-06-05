@@ -8,8 +8,7 @@ export default function FriendCard(props: any) {
             <div className="friend-card-content">
                 
                 <div className="content-top">
-                    <h5>{props.name}</h5>
-                    {/* <p>2 Hr</p> */}
+                    <h5>{props.name}</h5>{/* <p>2 Hr</p> */}
                 </div>
                     
                 <h6>{props.song}</h6>
