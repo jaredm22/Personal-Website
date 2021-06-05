@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import endpoints from '../../../endpoints.config';
+// import endpoints from '../../../endpoints.config';
 
 
 interface state {
@@ -15,19 +15,19 @@ export default function Card(props: {id: string}) {
         data: {}
     })
 
-    useEffect(() => {
-        if (!state.dataLoaded) {
-            axios.get(`https://api.rawg.io/api/games/${props.id}?key=${endpoints.RAWG_API_KEY}`)
-              .then(res => {
-                console.log(res.data);
-                setState({
-                        ...state, 
-                        dataLoaded: true,
-                        data: res.data,       
-                });
-          })
-        }
-    }, [state])
+    // useEffect(() => {
+    //     if (!state.dataLoaded) {
+    //         axios.get(`https://api.rawg.io/api/games/${props.id}?key=${endpoints.RAWG_API_KEY}`)
+    //           .then(res => {
+    //             console.log(res.data);
+    //             setState({
+    //                     ...state, 
+    //                     dataLoaded: true,
+    //                     data: res.data,       
+    //             });
+    //       })
+    //     }
+    // }, [state])
 
     return(
         state.dataLoaded ?        

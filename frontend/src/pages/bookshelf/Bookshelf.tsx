@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './bookshelf.scss';
-import Lightsaber from '../components/Lightsaber';
+// import Lightsaber from '../components/Lightsaber';
 import { Rnd } from 'react-rnd';
 import Card from './components/Card';
 
