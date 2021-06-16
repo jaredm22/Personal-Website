@@ -37,10 +37,14 @@
             border-radius: 8px;
             background: $apple-dark-gray3;
             border: none;
-            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
         }
 
         .safari-header-top-right {
