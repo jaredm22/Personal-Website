@@ -6,9 +6,22 @@ import MediaController from './components/MediaController';
 import { Rnd } from 'react-rnd';
 import axios from 'axios';
 
+interface state {
+    dataLoaded: boolean,
+    selectedNavItem: string,
+    selectedPlaylistId: string,
+    playlistInfo: Array<any>,
+    playlistTracks: Array<any>,
+    expanded: boolean,
+    x: number, 
+    y: number, 
+    width: string,
+    height: string,
+}
+
 export default function Spotify(props: any) {
 
-    const [ state, setState ] = useState({
+    const [ state, setState ] = useState<state>({
         dataLoaded: false,
         selectedNavItem: "Home",
         selectedPlaylistId: "",
@@ -57,7 +70,7 @@ export default function Spotify(props: any) {
             })
             .catch((err) => console.log("An error occured", err));
         }
-    }, [state]);
+    }, [state.dataLoaded]);
     
     return(
             <Rnd

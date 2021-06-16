@@ -1,15 +1,26 @@
 import { useState } from 'react';
 import './safari.scss';
 import Header from './components/Header';
-import Lightsaber from '../components/Lightsaber';
+// import Lightsaber from '../components/Lightsaber';
 import { Rnd } from 'react-rnd';
+import Cadre from '../../images/cadre.png';
 
-
+interface state {
+    selectedTab: number,
+    siteUrl: string,
+    width: string,
+    height: string,
+    x: number,
+    y: number,
+    expanded: boolean, 
+    minimized: boolean,
+}
 
 export default function Safari(props: any) {
 
-    const [ state, setState ] = useState({
+    const [ state, setState ] = useState<state>({
         selectedTab: 0,
+        siteUrl: "https://cadretest.herokuapp.com",
         width: "80%",
         height: "90%",
         x: 130,
@@ -29,14 +40,9 @@ export default function Safari(props: any) {
         });
     }
 
-    // function handleTabClick(tab: string) {
-    //     setState(prevState => {
-    //         return { 
-    //             ...prevState, 
-    //             selectedTab: 0
-    //         };
-    //     });
-    // }
+    function handleTabClick(tab: string) {
+        setState({...state, selectedTab: 0});
+    }
 
     function handleClick() {
         props.onChildClick("safari");
@@ -72,9 +78,15 @@ export default function Safari(props: any) {
                 <Header
                     minimizeHandler={props.minimizeHandler}
                     expandHandler={handleExpand}
+                    siteUrl={state.siteUrl}
+                    childClick={handleTabClick}
                 />
-                <div className="safari-main">
-                    <div style={{width: "200px", }}>
+                <div className="safari-main" 
+                    style={{
+                        backgroundImage: `url(${Cadre})` 
+                    }}
+                >
+                    {/* <div style={{width: "200px", }}>
                         <h2>Thanks for stopping by! As you can see, this website is still a work in progress.</h2>
                         <br></br>
                         <h2>For now, please enjoy these css/html lightsabers I made.</h2>
@@ -86,7 +98,7 @@ export default function Safari(props: any) {
                     <Lightsaber color="blue"/>
                     <Lightsaber color="purple"/>    
                     <Lightsaber color="black"/>
-                    <h1>May the force be with you.</h1>             
+                    <h1>May the force be with you.</h1>              */}
                 </div>
 
             </Rnd>

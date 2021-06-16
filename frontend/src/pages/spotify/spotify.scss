@@ -6,7 +6,7 @@
     padding: 0;
 }
 
-h6 { font-weight: 700; font-size: 14px; padding: 2px;}
+// h6 { font-weight: 700; font-size: 14px; padding: 2px;}
 h6:hover { color: white; text-decoration: underline;}
 
 
@@ -124,7 +124,7 @@ h6:hover { color: white; text-decoration: underline;}
                 .list-item, .list-header {
                     width: 100%;
                     display: grid;
-                    grid-template-columns: 8% 41% 41% 10%;
+                    grid-template-columns: 50px 40% 40% calc(100% - 80% - 50px);
                     grid-template-areas: "item-number title album-name date-added time";
                     text-align: left;
                     box-sizing: border-box;
@@ -176,10 +176,7 @@ h6:hover { color: white; text-decoration: underline;}
             }
         }
     }
-    .content-view-playlist::-webkit-scrollbar {
-        display: none;
-    }
-      
+    .content-view-playlist::-webkit-scrollbar { display: none }    
 }
 
 .left-sidebar {
@@ -292,8 +289,7 @@ h6:hover { color: white; text-decoration: underline;}
         grid-area:list;
         height: 100%;
         width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow-y: scroll;
     }
 
     .friend-card {
@@ -303,7 +299,6 @@ h6:hover { color: white; text-decoration: underline;}
         grid-template-areas: "photo content";
         margin: 1.5rem 0;
         
-
         .friend-card-photo {
             grid-area: photo;
             height: 100%;
@@ -339,11 +334,11 @@ h6:hover { color: white; text-decoration: underline;}
                 white-space: nowrap;
             }
 
-            h5 {margin: 0; padding: 0;}
+            h5 {margin: 0; padding: 0}
 
             h6 {
                 font-size: 12px;
-                font-weight: 300;
+                font-weight: 500;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
